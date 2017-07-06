@@ -19,7 +19,7 @@ CREATE TABLE service
 (
 	mem_num NUMBER(20),
 	title VARCHAR2(30),
-	s_content VARCHAR2(200),
+	s_content CLOB,
     s_regdate DATE,
 	CONSTRAINT FK_p_s_num FOREIGN KEY (mem_num)
     REFERENCES member(mem_num)
