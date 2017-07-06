@@ -1,20 +1,14 @@
 package acorn.dao;
 
-import java.io.CharArrayReader;
-import java.io.Reader;
-import java.io.Writer;
-import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import oracle.jdbc.driver.*;
-import oracle.sql.CLOB;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import acorn.dto.MemberDto;
+import acorn.dto.QnaListDto;
 import util.DbcpBean;
 
 public class MemberDao {
@@ -41,7 +35,7 @@ public class MemberDao {
 			List<MemberDto> list = new ArrayList<>();
 			try {
 				conn = new DbcpBean().getConn();
-				String sql = "SELECT * FROM p_member order by mem_num asc";
+				String sql = "SELECT * FROM member order by mem_num asc";
 				pstmt = conn.prepareStatement(sql);
 
 				// sql문 수행하고 결과셋 받아오기
@@ -86,7 +80,7 @@ public class MemberDao {
 			int flag = 0;
 			try {
 				conn = new DbcpBean().getConn();
-				String sql = "UPDATE p_member SET id=?, pwd=?, name=?, phone=?, email=?, addr=? WHERE mem_num = ?";
+				String sql = "UPDATE member SET id=?, pwd=?, name=?, phone=?, email=?, addr=? WHERE mem_num = ?";
 
 				// ? 에 수정할 회원의 정보 바인딩 하기
 
@@ -129,7 +123,7 @@ public class MemberDao {
 			MemberDto dto = null;
 			try {
 				conn = new DbcpBean().getConn();
-				String sql = "SELECT id, pwd, name, phone, email, addr, regdate from p_member WHERE mem_num =?";
+				String sql = "SELECT id, pwd, name, phone, email, addr, regdate from member WHERE mem_num =?";
 				
 
 				pstmt = conn.prepareStatement(sql);
@@ -177,7 +171,7 @@ public class MemberDao {
 			MemberDto dto=null;
 			try {
 				conn = new DbcpBean().getConn();
-				String sql = "SELECT id, pwd, name, phone, email, addr from p_member WHERE mem_num =?";
+				String sql = "SELECT id, pwd, name, phone, email, addr from member WHERE mem_num =?";
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, num);
@@ -217,7 +211,7 @@ public class MemberDao {
 			int flag=0;
 			try{
 				conn=new DbcpBean().getConn();
-				String sql="DELETE FROM p_member WHERE mem_num=?";
+				String sql="DELETE FROM member WHERE mem_num=?";
 				pstmt=conn.prepareStatement(sql);
 				// ? 에 삭제할 회원의 번호를 바인딩 한다.
 				pstmt.setInt(1, num);
@@ -259,8 +253,8 @@ public class MemberDao {
 			int flag = 0;
 			try {
 				conn = new DbcpBean().getConn();
-				String sql = "INSERT INTO p_member(mem_num,id,pwd,name,phone,email,addr,regdate) "
-						+ "VALUES(p_member_seq.NEXTVAL,?,?,?,?,?,?,SYSDATE)";
+				String sql = "INSERT INTO member(mem_num,id,pwd,name,phone,email,addr,regdate) "
+						+ "VALUES(member_seq.NEXTVAL,?,?,?,?,?,?,SYSDATE)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getId());
 				pstmt.setString(2, dto.getPwd());
@@ -297,7 +291,7 @@ public class MemberDao {
 			String id = "";
 			try {
 				conn = new DbcpBean().getConn();
-				String sql = "SELECT id FROM p_member " + "WHERE name=? AND email=?";
+				String sql = "SELECT id FROM member " + "WHERE name=? AND email=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, name);
 				pstmt.setString(2, email);
@@ -332,7 +326,7 @@ public class MemberDao {
 			String pwd="";
 			try {
 				conn = new DbcpBean().getConn();
-				String sql = "SELECT pwd FROM p_member " + "WHERE id=? AND phone=?";
+				String sql = "SELECT pwd FROM member " + "WHERE id=? AND phone=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, id);
 				pstmt.setString(2, phone);
@@ -366,7 +360,7 @@ public class MemberDao {
 			String id="";
 			try {
 				conn = new DbcpBean().getConn();
-				String sql = "SELECT id FROM p_member "
+				String sql = "SELECT id FROM member "
 						+ "WHERE id=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, inputId);
@@ -391,30 +385,83 @@ public class MemberDao {
 
 		}// overlab();
 		
-		public boolean delete(String id){
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			int flag = 0;
-			try{
-				conn = new DbcpBean().getConn();
-				String sql = "delete from p_member where id=?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, id);
-				pstmt.executeQuery();
-			}catch(SQLException se){
-				se.printStackTrace();
-			}finally{
-				try{
-					if(pstmt != null)pstmt.close();
-					if(conn != null)conn.close();
-				}catch(Exception e){}
-			}
-			if(flag>0){
-				return true;
-			}else{
-				return false;
-				}
-		}//delete		
+		
+		
+		//상품문의 리스트를 출력해주는 메소드
+				public List<QnaListDto> getQnaList(){
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					QnaListDto dto=null;
+					List<QnaListDto> list=new ArrayList<>();
+					try {
+						conn = new DbcpBean().getConn();
+						String sql = "SELECT * FROM qnalist ORDER BY qna_listnum DESC";
+						pstmt = conn.prepareStatement(sql);
+						rs = pstmt.executeQuery();
+						System.out.println(rs.getRow());
+						while (rs.next()) {
+							System.out.println("while안");
+							int listnum=rs.getInt("qna_listnum");
+							String title=rs.getString("qna_title");
+							int pdnum=rs.getInt("qna_pdnum");
+							String writer=rs.getString("qna_writer");
+							String content=rs.getString("qna_content");
+							String regdate=rs.getString("qna_regdate");
+							
+							dto=new QnaListDto(listnum,title,pdnum,writer,content,regdate);
+							list.add(dto);
+						}
+						System.out.println("while다음");
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						try {
+							if (rs != null)
+								rs.close();
+							if (pstmt != null)
+								pstmt.close();
+							if (conn != null)
+								conn.close();
+						} catch (Exception e) {
+						}
+					}
+					return list;
+				}//getQnaList();
+				
+				//상품문의글 등록 메서드
+				public boolean qnaInsert(QnaListDto dto){
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					int flag = 0;
+					try {
+						conn = new DbcpBean().getConn();
+						String sql = "INSERT INTO qnalist(qna_listnum, qna_title, qna_pdnum, "
+								+ "qna_writer, qna_content, qna_regdate) "
+								+ "VALUES(s_qnalist_seq.NEXTVAL, ?, ?, ?, ? ,SYSDATE)";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, dto.getQna_title());
+						pstmt.setInt(2, dto.getQna_pdnum());
+						pstmt.setString(3, dto.getQna_writer());
+						pstmt.setString(4, dto.getQna_content());
+						flag = pstmt.executeUpdate();
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						try {
+							if (pstmt != null)
+								pstmt.close();
+							if (conn != null)
+								conn.close();
+						} catch (Exception e) {
+						}
+					}
+					if (flag > 0) {
+						return true;
+					} else {
+						return false;
+					}
+				}//qnaInsert();
 	
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -458,7 +505,7 @@ public class MemberDao {
 			boolean isValid = false;
 			try {
 				conn = new DbcpBean().getConn();
-				String sql = "SELECT * FROM P_MEMBER WHERE id=? and pwd=?";
+				String sql = "SELECT * FROM member WHERE id=? and pwd=?";
 				pstmt = conn.prepareStatement(sql);
 				// ?에 아이디와 비밀번호를 바인딩하고
 				pstmt.setString(1, dto.getId());
@@ -494,7 +541,7 @@ public class MemberDao {
 			MemberDto dto = null;
 			try {
 				conn = new DbcpBean().getConn();
-				String sql = "SELECT pwd,name,phone,email,addr,regdate FROM p_member WHERE id=?";
+				String sql = "SELECT pwd,name,phone,email,addr,regdate FROM member WHERE id=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();
@@ -534,7 +581,7 @@ public class MemberDao {
 			int flag=0;
 			try{
 				conn = new DbcpBean().getConn();
-				String sql ="update p_member set pwd=?,phone=?,email=?,addr=? where id=?";
+				String sql ="update member set pwd=?,phone=?,email=?,addr=? where id=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getPwd());
 				pstmt.setString(2, dto.getPhone());
@@ -557,6 +604,31 @@ public class MemberDao {
 				}
 			}
 		}
+		
+		public boolean delete(String id){
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			int flag = 0;
+			try{
+				conn = new DbcpBean().getConn();
+				String sql = "delete from member where id=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.executeQuery();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}finally{
+				try{
+					if(pstmt != null)pstmt.close();
+					if(conn != null)conn.close();
+				}catch(Exception e){}
+			}
+			if(flag>0){
+				return true;
+			}else{
+				return false;
+				}
+		}//delete		
 				
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
@@ -581,7 +653,7 @@ public class MemberDao {
 			MemberDto dto = null;
 			try {
 				conn = new DbcpBean().getConn();
-				String sql = "SELECT mem_num,name,email FROM p_member" + " WHERE id=?";
+				String sql = "SELECT mem_num,name,email FROM member" + " WHERE id=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();

@@ -61,11 +61,11 @@ body{
 
 <script>
 function signUpBtn_click() {
-	opener.location.href='../member/agreeInfo.jsp'; 
+	opener.location.href='../member/agree_info.jsp'; 
 	window.close();
 }
 function findBtn_click() {
-	opener.location.href='../member/findId.jsp'; 
+	opener.location.href='../member/find_id.jsp'; 
 	window.close();
 }
 </script>
