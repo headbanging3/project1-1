@@ -64,7 +64,7 @@
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">고객센터 <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
 	            <li><a href="#">BEST FAQ</a></li>
-	            <li><a href="<%=cPath%>/service/qnaList.jsp">상품문의</a></li>
+	            <li><a href="<%=cPath%>/service/qnalist.jsp">상품문의</a></li>
 	            <li><a href="#">주문/결제</a></li>
 	            <li><a href="#">배송</a></li>
 	            <li><a href="#">주문 취소 및 교환</a></li>

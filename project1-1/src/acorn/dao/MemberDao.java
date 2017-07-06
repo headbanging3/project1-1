@@ -399,9 +399,7 @@ public class MemberDao {
 						String sql = "SELECT * FROM qnalist ORDER BY qna_listnum DESC";
 						pstmt = conn.prepareStatement(sql);
 						rs = pstmt.executeQuery();
-						System.out.println(rs.getRow());
 						while (rs.next()) {
-							System.out.println("while안");
 							int listnum=rs.getInt("qna_listnum");
 							String title=rs.getString("qna_title");
 							int pdnum=rs.getInt("qna_pdnum");
@@ -412,7 +410,6 @@ public class MemberDao {
 							dto=new QnaListDto(listnum,title,pdnum,writer,content,regdate);
 							list.add(dto);
 						}
-						System.out.println("while다음");
 					} catch (Exception e) {
 						e.printStackTrace();
 					} finally {
@@ -429,6 +426,42 @@ public class MemberDao {
 					return list;
 				}//getQnaList();
 				
+				public QnaListDto qnaDetail(int listnum){
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					QnaListDto dto=new QnaListDto();
+					try {
+						conn = new DbcpBean().getConn();
+						String sql = "SELECT qna_title, qna_writer, qna_content FROM qnalist WHERE qna_listnum=?";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setInt(1, listnum);
+						rs = pstmt.executeQuery();
+						while (rs.next()) {
+							String title=rs.getString("qna_title");
+							String writer=rs.getString("qna_writer");
+							String content=rs.getString("qna_content"); 
+							dto.setQna_title(title);
+							dto.setQna_writer(writer);
+							dto.setQna_content(content);
+						}
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						try {
+							if (rs != null)
+								rs.close();
+							if (pstmt != null)
+								pstmt.close();
+							if (conn != null)
+								conn.close();
+						} catch (Exception e) {
+						}
+					}
+					return dto;
+				}
+				
 				//상품문의글 등록 메서드
 				public boolean qnaInsert(QnaListDto dto){
 					Connection conn = null;
@@ -438,7 +471,7 @@ public class MemberDao {
 						conn = new DbcpBean().getConn();
 						String sql = "INSERT INTO qnalist(qna_listnum, qna_title, qna_pdnum, "
 								+ "qna_writer, qna_content, qna_regdate) "
-								+ "VALUES(s_qnalist_seq.NEXTVAL, ?, ?, ?, ? ,SYSDATE)";
+								+ "VALUES(qnalist_seq.NEXTVAL, ?, ?, ?, ? ,SYSDATE)";
 						pstmt = conn.prepareStatement(sql);
 						pstmt.setString(1, dto.getQna_title());
 						pstmt.setInt(2, dto.getQna_pdnum());

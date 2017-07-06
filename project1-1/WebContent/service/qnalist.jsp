@@ -8,11 +8,6 @@
 	request.setCharacterEncoding("utf-8");
 	response.setCharacterEncoding("utf-8");
 	List<QnaListDto> list=MemberDao.getInstance().getQnaList();
-	if(list.size()==0){
-		System.out.println("list가 null임");
-	}else{
-		System.out.println("list가 null아님");
-	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -63,14 +58,12 @@
             			QnaListDto dto=list.get(i); %>
 	                <tr>
 	                    <td><%=dto.getQna_listnum() %></td>
-	                    <td><a href="qnaDetail.jsp?qna_num=<%=dto.getQna_listnum()%>"><%=dto.getQna_title() %></a></td>
+	                    <td><a href="qnadetail.jsp?qna_listnum=<%=dto.getQna_listnum()%>"><%=dto.getQna_title() %></a></td>
 	                    <td><%=dto.getQna_pdnum() %></td>
 	                    <td><%=dto.getQna_writer() %></td>
 	                   	<td><%=dto.getQna_regdate() %></td>
 	                </tr>
-                	<% }
-            		System.out.println("list가 for문 다음");
-                	%>
+                	<% }%>
             	<%}%>
             </tbody>
         </table>
@@ -82,10 +75,7 @@
 </div>
 <script src="../resource/js/jquery-3.2.0.js"></script>
 <script>
-	$("#addQnaBtn").on("click",function(){
-		
-		
-	});
+
 </script>
 </body>
 </html>
