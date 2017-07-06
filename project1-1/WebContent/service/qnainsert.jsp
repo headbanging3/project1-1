@@ -44,7 +44,10 @@
 </div>
 <script src="../resource/js/jquery-3.2.0.js"></script>
 <script>
-
+	$("#addQna").on("click",function(){
+		location.href=""
+		
+	});
 </script>
 </body>
 </html>
