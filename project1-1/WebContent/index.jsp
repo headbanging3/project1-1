@@ -1,41 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%
+	String id =(String) session.getAttribute("id");
+	String manager="hide";
+	
+	if(id==null)
+		id="";
+	
+	
+	if(id.equals("root"))
+		manager = "";
+
+%>    
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>popup/pupup_test.html</title>
-<script>
-		
-	//팝업을 중앙에 띄우는 함수 
-	function showPopup2(){
-		PopupCenter("popup_page.html","팝업창", 500, 400);
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<style>
+	.hide {
+		display:none;
 	}
+</style>
+
+<jsp:include page="index_navbar.jsp"></jsp:include>
+
+<div class="container">
+	<h3>메인 페이지 입니다.</h3>
+	<ul class="pagination">
+		<li><a href="manager/">관리자페이지</a></li>
+		<li class="<%=manager%>"><a href="user_page/index.jsp">유저페이지</a></li>
+	</ul>
 	
-	//팝업을 중앙에 원하는 페이지를 원하는  크기로 띄우는 함수 
-	function PopupCenter(url, title, w, h) {
-	    // Fixes dual-screen position                         Most browsers      Firefox
-	    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
-	    var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
-
-	    width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-	    height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
-
-	    var left = ((width / 2) - (w / 2)) + dualScreenLeft;
-	    var top = ((height / 2) - (h / 2)) + dualScreenTop;
-	    var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
-
-	    // Puts focus on the newWindow
-	    if (window.focus) {
-	        newWindow.focus();
-	    }
-	}
-</script>
-</head>
-<body>
+</div>
 
 
-<script>
-	//페이지 로딩 시점에 팝업을 무조건 띄우려면 
-	showPopup2();
-</script>
+
+
+
 </body>
 </html>
