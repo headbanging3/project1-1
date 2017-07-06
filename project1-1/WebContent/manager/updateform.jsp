@@ -1,0 +1,40 @@
+<%@page import="acorn.dto.MemberDto"%>
+<%@page import="acorn.dao.MemberDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	int num = Integer.parseInt(request.getParameter("num"));
+	
+	MemberDao dao = MemberDao.getInstance();
+	MemberDto dto = dao.getDataS(num);
+%>    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<title>updateform.jsp</title>
+</head>
+<body>
+<h3>회원 정보 수정</h3>
+<form action="update.jsp" method="post">
+	<input type="hidden" name="num" value="<%=dto.getMem_num()%>"/>
+	번호 <input type="text" value="<%=dto.getMem_num()%>" disabled/><br/>
+	이름 <input type="text" name="name" 
+			value="<%=dto.getName()%>"/> <br/>
+	아이디 <input type="text" name="id" 
+			value="<%=dto.getId()%>"/> <br/>
+	비밀번호 <input type="text" name="pwd" 
+			value="<%=dto.getPwd()%>"/> <br/>
+	핸드폰 <input type="text" name="phone" 
+			value="<%=dto.getPhone()%>"/> <br/>
+	이메일 <input type="text" name="email" 
+			value="<%=dto.getEmail()%>"/> <br/>												
+	주소 <input type="text" name="addr"
+			value="<%=dto.getAddr()%>"/> <br/>
+	<input type="hidden" name="regdate" value="<%=dto.getRegdate() %>" />
+	가입날짜 <input type="text" value="<%=dto.getRegdate() %>" disabled />	<br/>		
+	<button type="submit">확인</button>	
+</form>
+</body>
+</html>
