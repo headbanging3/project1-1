@@ -34,7 +34,7 @@
 <div class="container">
 	
 <div class="container">
-	<h3>메인 페이지 입니다.</h3>
+	<h3>메인 페이지 입니다</h3>
 	
 	<div id="bg" class="col-xs-12">
 	<ul class="pagination">
@@ -48,7 +48,6 @@
 </div>	
 	
 </div>
-
 
 
 
