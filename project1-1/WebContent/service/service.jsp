@@ -39,11 +39,12 @@
 			<%} else { %>
 				value="<%=9999 %>"
 			<%} %>/>
+			
 			<label for="name" class="control-label"><strong>이름</strong></label>
-			<input type="text" id="name" name="name" class="form-control"
+			<input type="text" class="form-control" 
 			<%if(id!=null) {%>
 				value="<%=dto.getName() %>"
-			<%} %>/>
+			<%} %> disabled/>
 		</div>
 		<div class="form-group">
 			<label for="email"><strong>이메일</strong></label>
