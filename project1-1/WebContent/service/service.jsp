@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%
 	//세션에 저장된 회원의 아이디를 이용해서 회원정보를 얻어온다.
-	String id=(String)session.getAttribute("id");
+	String id=(String)session.getAttribute("savedID");
 	MemberDto dto=MemberDao.getInstance().sergetData(id);
 	String cPath=request.getContextPath();
 %>
@@ -13,8 +13,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resource/css/bootstrap.min.css" />
-<link rel="stylesheet" href="resource/css/custom.css" />
+<link rel="stylesheet" href="../resource/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../resource/css/custom.css" />
 </head>
 <body>
 <jsp:include page="../index_navbar.jsp"></jsp:include>
@@ -25,13 +25,13 @@
   <%if(id==null){%>
   	<p><a class="btn btn-primary btn-lg" href="javascript:showPopup()" role="button">로그인하러 가기</a></p>
   <%} else {%>
-  	<p><a class="btn btn-primary btn-lg" href="service/index.jsp?mem_num=<%=dto.getMem_num() %>" role="button">나의 문의 내역</a></p>
+  	<p><a class="btn btn-primary btn-lg" href="index.jsp?mem_num=<%=dto.getMem_num() %>" role="button">나의 문의 내역</a></p>
   <%} %>
 </div>
 
 <!-- 이름, 이멜, 상담 내용 form -->
 <div class="col-sm-8 col-sm-offset-2">
-	<form action="service/ser_insert.jsp" method="post">
+	<form action="ser_insert.jsp" method="post">
 		<div class="form-group">
 			<input type="hidden" id="mem_num" name="mem_num" 
 			<%if(id!=null){ %>	
@@ -39,11 +39,12 @@
 			<%} else { %>
 				value="<%=9999 %>"
 			<%} %>/>
+			
 			<label for="name" class="control-label"><strong>이름</strong></label>
-			<input type="text" id="name" name="name" class="form-control"
+			<input type="text" class="form-control" 
 			<%if(id!=null) {%>
 				value="<%=dto.getName() %>"
-			<%} %>/>
+			<%} %> disabled/>
 		</div>
 		<div class="form-group">
 			<label for="email"><strong>이메일</strong></label>

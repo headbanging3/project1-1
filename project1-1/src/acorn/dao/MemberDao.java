@@ -636,7 +636,7 @@ public class MemberDao {
 		List<ServiceDto> list = new ArrayList<>();
 		try {
 			conn = new DbcpBean().getConn();
-			String sql = "SELECT title, s_content, TO_CHAR(regdate,'YYYY.MM.DD AM HH24:MI') regdate FROM p_service INNER JOIN p_member ON p_member.mem_num = p_service.mem_num WHERE p_member.mem_num= ? ORDER BY regdate";
+			String sql = "SELECT title, s_content, TO_CHAR(regdate,'YYYY.MM.DD AM HH24:MI') regdate FROM service INNER JOIN member ON member.mem_num = service.mem_num WHERE member.mem_num= ? ORDER BY regdate";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 			// sql 문 수행하고 결과셋 받아오기
@@ -678,7 +678,7 @@ public class MemberDao {
 		MemberDto dto = null;
 		try {
 			conn = new DbcpBean().getConn();
-			String sql = "SELECT mem_num,name,email FROM p_member" + " WHERE id=?";
+			String sql = "SELECT mem_num,name,email FROM member" + " WHERE id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -712,7 +712,7 @@ public class MemberDao {
 		int flag = 0;
 		try {
 			conn = new DbcpBean().getConn();
-			String sql = "INSERT INTO p_service(mem_num,s_content,title,s_regdate) " + "VALUES(?,?,?,SYSDATE)";
+			String sql = "INSERT INTO service(mem_num,s_content,title,s_regdate) " + "VALUES(?,?,?,SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 			pstmt.setString(2, s_content);
