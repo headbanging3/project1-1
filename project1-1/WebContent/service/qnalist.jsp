@@ -8,6 +8,8 @@
 	request.setCharacterEncoding("utf-8");
 	response.setCharacterEncoding("utf-8");
 	List<QnaListDto> list=MemberDao.getInstance().getQnaList();
+	String id=(String)session.getAttribute("id");
+	System.out.println(id);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -69,13 +71,16 @@
         </table>
         <div class="panel-footer">
            책임자 = 호궁환
-            <a href="qnainsert.jsp">글작성</a>
+            <a href="qnainsert_form.jsp" id="addQna">글작성</a>
         </div>
     </div>
 </div>
 <script src="../resource/js/jquery-3.2.0.js"></script>
 <script>
-
+	<%if(id==null){%>
+		$("#addQna").css("display","none");
+	<%}%>
+	
 </script>
 </body>
 </html>
