@@ -45,8 +45,37 @@
 <div>
 	<img src="resource/nike/나이키.png"  />
 	<img src="resource/nike/나이키2.png"  />
-	<img src="resource/nike/나이키3.png"  />	
 </div>
-
+	
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="2500">
+	<!-- Carousel 하단의 동그란 nav 요소 -->
+		<ol class="carousel-indicators">
+			<!-- data-target="carousel 전체의 선택자" data-slide-to="컨텐츠 인덱스" -->
+			<li data-target="#myCarousel" data-slide-to="0"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="item active">
+				<img src="resource/nike/나이키3.png" id="img"/>
+				<div class="carousel-caption">
+					
+											
+				</div>
+			</div>
+			<div class="item">
+				<img src="resource/nike/나이키4.png" id="img"/>
+				<div class="carousel-caption">
+					
+				</div>
+			</div>
+			<div class="item">
+				<img src="resource/nike/나이키5.png" id="img"/>
+				<div class="carousel-caption">
+					
+				</div>
+			</div>
+		</div>
+</div>
 </body>
 </html>
