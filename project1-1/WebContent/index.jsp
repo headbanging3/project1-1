@@ -25,13 +25,13 @@
 		display:none;
 	}
 	#bg{
-		margin-left:-255px;
+		margin-left:-245px;
 	}
 </style>
 
 <jsp:include page="index_navbar.jsp"></jsp:include>
 
-<div class="container">
+
 	
 <div class="container">
 	<h3>메인 페이지 입니다</h3>
@@ -46,8 +46,7 @@
 		<img src="resource/nike/나이키3.png"  />
 	</div>
 </div>	
-	
-</div>
+
 
 
 
