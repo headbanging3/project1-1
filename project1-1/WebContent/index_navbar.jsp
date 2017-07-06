@@ -47,12 +47,6 @@
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
       <ul class="nav navbar-nav navbar-right">
       	<%if(id != null) {%>
       	  <li><a href="<%=cPath %>/member/info.jsp"><%=id %> 님</a></li>
@@ -70,7 +64,7 @@
 	            <li><a href="#">주문 취소 및 교환</a></li>
 	            <li><a href="#">반품</a></li>
 	            <li class="divider"></li>
-	            <li><a href="<%=cPath %>/service.jsp">문의하러 가기</a></li>
+	            <li><a href="<%=cPath %>/service/service.jsp">문의하러 가기</a></li>
         	  </ul>
      	   </li>
      	 </ul>

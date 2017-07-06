@@ -35,7 +35,7 @@
 	<h3>상품문의 리스트</h3>
 	<div class="panel panel-default">
         <div class="panel-heading">
-            <h1 class="panel-title">  Q&A는 저희가 책임지겠습니다!</h1>
+            <h1 class="panel-title">Q&A는 저희가 책임지겠습니다!</h1>
         </div>
        
         <table class="table table-hover">
