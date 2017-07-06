@@ -10,9 +10,7 @@ nav, .btn-group{
 	margin-bottom: 0px;
 }
 
-body{
-	background-color: #CCFFFF;
-}
+
 
 .nav > .dropdown:hover > ul{
 	display: block;
