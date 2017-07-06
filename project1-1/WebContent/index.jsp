@@ -31,8 +31,8 @@
 <div class="container">
 	<h3>메인 페이지 입니다.</h3>
 	<ul class="pagination">
-		<li><a href="manager/">관리자페이지</a></li>
-		<li class="<%=manager%>"><a href="user_page/index.jsp">유저페이지</a></li>
+		<li class="<%=manager%>"><a href="manager/">관리자페이지</a></li>
+		<li><a href="user_page/index.jsp">유저페이지</a></li>
 	</ul>
 	
 </div>
