@@ -70,7 +70,7 @@
 	            <li><a href="#">주문 취소 및 교환</a></li>
 	            <li><a href="#">반품</a></li>
 	            <li class="divider"></li>
-	            <li><a href="<%=cPath %>/service.jsp">문의하러 가기</a></li>
+	            <li><a href="<%=cPath %>/service/service.jsp">문의하러 가기</a></li>
         	  </ul>
      	   </li>
      	 </ul>
