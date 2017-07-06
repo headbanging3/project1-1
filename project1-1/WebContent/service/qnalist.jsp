@@ -69,7 +69,7 @@
         </table>
         <div class="panel-footer">
            책임자 = 호궁환
-            <a href="insertForm.jsp">글작성</a>
+            <a href="qnainsert.jsp">글작성</a>
         </div>
     </div>
 </div>

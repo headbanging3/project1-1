@@ -1,26 +1,27 @@
-<%@page import="acorn.dto.QnaListDto"%>
-<%@page import="acorn.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	int listnum=Integer.parseInt(request.getParameter("qna_listnum"));
-	QnaListDto dto=MemberDao.getInstance().qnaDetail(listnum);
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>상품문의</title>
+<title>Insert title here</title>
 <style>
 	.container{
 		margin: 0 auto;
 		margin-top:60px;
 		text-align:center;
 	}
-	.panel-body{
-		height:400px;
-		padding:50px;
+	#title{
+		text-align:center;
 	}
+	#content{
+		height:500px;
+	}
+	.btn{
+		margin:0 20px;
+		width:100px;
+	}
+	
 </style>
 </head>
 <body>
@@ -29,16 +30,21 @@
 	<h3>상품문의</h3>
 	<div class="panel panel-default">
         <div class="panel-heading">
-            <h1 class="panel-title"><%=dto.getQna_title() %></h1>
+        	<input type="text" name="title" id="title" class="form-control" placeholder="제목"/>
         </div>
         <div class="panel-body">
-            <%=dto.getQna_content() %>
+           <label for="content">내용</label>
+            <input type="text" name="contet" id="content" class="form-control"/>
         </div>
         <div class="panel-footer">
-            <%=dto.getQna_writer() %>
+            <button id="addQna" class="btn btn-default">작성</button>
+            <button id="cansel" class="btn btn-default">취소</button>
         </div>
     </div>
 </div>
+<script src="../resource/js/jquery-3.2.0.js"></script>
+<script>
 
+</script>
 </body>
 </html>
