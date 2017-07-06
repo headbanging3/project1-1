@@ -14,7 +14,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>업데이트 폼</title>
-<link rel="stylesheet" href="../../resource/css/bootstrap.css"/>
+<link rel="stylesheet" href="../resource/css/bootstrap.css"/>
 </head>
 <body>
 	
