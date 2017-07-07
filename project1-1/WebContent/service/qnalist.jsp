@@ -22,12 +22,15 @@
 		margin-top:60px;
 		text-align:center;
 	}
-	a{
+	#addQna{
 		float:right;
 	}
 	
 	h3{
 		color:#fff;
+	}
+	tr{
+		text-align:center;
 	}
 </style>
 </head>
