@@ -38,7 +38,7 @@
 	<div id="bg" class="col-xs-12">
 		<ul class="pagination">
 			<li class="<%=manager%>"><a href="manager/">관리자페이지</a></li>
-			<li><a href="user_page/index.jsp">유저페이지</a></li>
+			<li><a href="userspage/index.jsp">유저페이지</a></li>
 		</ul>
 	</div>
 </div>
