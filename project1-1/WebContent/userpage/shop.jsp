@@ -1,5 +1,17 @@
+<%@page import="acorn.dto.ItemDto"%>
+<%@page import="java.util.List"%>
+<%@page import="acorn.dao.ItemDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<% 
+	String grid = "";
+	String indent = "";
+	
+	List<ItemDto> itemList =ItemDao.getInstance().getItemList();
+	String root =request.getSession().getServletContext().getRealPath("/upload/");
+	
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="inc/header.jsp"></jsp:include>        
 <style>
@@ -22,8 +34,34 @@ img{
                                             <div class="grid_12">
                                             	<div class="indent-left p2">
                                                 	<h3 class="p0">개간지 운동화 비쌈</h3>
-                                                </div>
-                                                <div class="wrapper p4">
+                                                </div>                                                
+                                                <div class="wrapper">
+                                               <%for(int i=0;i<itemList.size();i++){
+                                            	   	if(i>3) break;
+													ItemDto item = itemList.get(i);
+													if(i==1) {
+														grid="alpha";
+														indent="indent-left";
+													}else if(i==2){
+														grid="";
+														indent="indent3";
+													}else{
+														grid="omega";
+														indent="indent-right";
+													}				
+												%>
+													<article class="grid_4 <%=grid%>">
+	                                                      <div class=<%=indent %>>
+	                                                          <figure class="frame2 p2"><img src="/upload/<%=item.getMain_Img() %>" alt="" /></figure>
+	                                                          <p class="color-4 prev-indent-bot"><%=item.getPname() %></p>
+	                                                          <p><%=item.getComments() %></p>
+	                                                          <div class="wrapper">
+	                                                          	<span class="price fleft"><%=item.getPrice() %>원</span>
+	                                                              <a class="button fright" href="detail.jsp">Read More</a>
+	                                                          </div>
+	                                                      </div>
+	                                                </article>
+												<%} %><!-- 
                                                     <article class="grid_4 alpha">
                                                         <div class="indent-left">
                                                             <figure class="frame2 p2"><img src="images/nike1.png" alt="" /></figure>
@@ -31,10 +69,11 @@ img{
                                                             <p>비싸긴 더럽게비싸</p>
                                                             <div class="wrapper">
                                                             	<span class="price fleft">$45.99</span>
-                                                                <a class="button fright" href="#">Read More</a>
+                                                                <a class="button fright" href="detail.jsp">Read More</a>
                                                             </div>
                                                         </div>
                                                     </article>
+                                                
                                                     <article class="grid_4">
                                                         <div class="indent3">
                                                             <figure class="frame2 p2"><img src="images/nike2.png" alt="" /></figure>
@@ -91,7 +130,7 @@ img{
                                                                 <a class="button fright" href="#">Read More</a>
                                                             </div>
                                                         </div>
-                                                    </article>
+                                                    </article>-->
                                                 </div>
                                             </div>
                                         </div>
