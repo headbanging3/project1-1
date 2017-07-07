@@ -29,7 +29,7 @@
 <%if(isSuccess){ %>
 <script>
 	alert("글이 등록되었습니다.");
-	location.herf="<%=cPath%>/index.jsp";
+	location.href="<%=cPath%>/service/qnalist.jsp";
 </script>
 <%}else{ %>
 <script>

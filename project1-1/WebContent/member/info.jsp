@@ -58,10 +58,14 @@
 		</tr>
 	</tbody>
 </table>
-<a href="<%=cPath %>/member/updateform.jsp">가입 정보 수정</a>
-<a href="javascript:memberConfirm()">회원 탈퇴</a><br />
+<ul>
+	<li><a href="<%=cPath %>/member/updateform.jsp">가입 정보 수정</a></li><br>
+	<li><a href="javascript:memberConfirm()">회원 탈퇴</a></li><br>
+	<li><a href="<%=cPath %>">메인 페이지로 가기</a></li>
+</ul>
 
-<a href="<%=cPath %>">메인 페이지로 가기</a>
+
+
 <script>
 	function memberConfirm(){
 		var isDelete=confirm("탈퇴 하시겠습니까?");

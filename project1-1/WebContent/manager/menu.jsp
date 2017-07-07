@@ -69,7 +69,7 @@
         <a href="index.jsp">Main</a>
       </li>
       <li><a href="m_list.jsp">회원목록보기</a></li>
-      <li><a href="#">메뉴 2</a></li>
+      <li><a href="itemManagement/item_list.jsp">상품관리</a></li>
       <li><a href="#">메뉴 3</a></li>
       <li><a href="#">메뉴 4</a></li>
       <li><a href="#">메뉴 5</a></li>
