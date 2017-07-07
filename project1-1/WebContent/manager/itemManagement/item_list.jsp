@@ -6,7 +6,7 @@
 <% 
 	String grid = "alpha";
 	List<ItemDto> itemList =ItemDao.getInstance().getItemList();
-	String cPath=(String)request.getContextPath();
+	System.out.println((String)request.getContextPath());
 	//String root =request.getSession().getServletContext().getRealPath("/upload/");
 	
 	System.out.println(application.getRealPath("/upload"));
