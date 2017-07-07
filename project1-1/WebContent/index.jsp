@@ -13,14 +13,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 </head>
 <body>
 <style>
+<<<<<<< HEAD
 .hide {
 	display: none;
 }
+=======
 
+	
+	.hide {
+		display:none;
+	}
+	#bg{
+		margin-left:-245px;
+	}
+	img{
+		width:100%;
+	}
+>>>>>>> branch 'master' of https://github.com/headbanging3/project1-1.git
+
+<<<<<<< HEAD
 img {
 	width: 100%;
 }
@@ -117,19 +134,20 @@ footer {
 	margin-top: 70px;
 	margin-left: 100px;
 }
+
+	.a { font-family: 'Indie Flower', cursive; 
+		 font-size: 100px;}
+
 </style>
 </head>
 
 <body>
 <jsp:include page="index_navbar.jsp"></jsp:include>
 
-<div class="container">
-	<h3>nike</h3>
-	
-</div>
+
 <div>
 	<div>
-
+	<h3 class="a">nike</h3>
 	<a id="bg" class="btn <%=manager %>" href="manager/" role="button">관리자페이지</a>
 	<a id="bg2" class="btn" href="user_page/index.jsp">구매하기</a>
 	<img id="animal" src="resource/nike/애니멀.png" />

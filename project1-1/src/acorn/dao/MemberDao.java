@@ -380,7 +380,9 @@ public class MemberDao {
 		List<QnaListDto> list = new ArrayList<>();
 		try {
 			conn = new DbcpBean().getConn();
-			String sql = "SELECT * FROM qnalist ORDER BY qna_listnum DESC";
+			String sql = "SELECT qna_listnum, qna_title, qna_pdnum, qna_writer, qna_content, "
+					+ "TO_CHAR(qna_regdate,'YYYY.MM.DD') AS qna_regdate "
+					+ "FROM qnalist ORDER BY qna_listnum DESC";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
