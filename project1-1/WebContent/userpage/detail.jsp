@@ -60,12 +60,7 @@
     </section>
     
 	<!--==============================footer=================================-->
-    <footer>       	
-   		<div class=footer-top>
-    	</div>
-    	<div class=footer-bottom>
-    	</div>
-    </footer>
+  <jsp:include page="inc/footer.jsp"></jsp:include>
     <script type="text/javascript">
 		$(document).ready(function() { 
 			$(".jCarouselLite").jCarouselLite({

@@ -85,14 +85,9 @@
             </div>
         </div>
     </section>
-    
+    <jsp:include page="inc/footer.jsp"></jsp:include>
 	<!--==============================footer=================================-->
-    <footer>       	
-   		<div class=footer-top>
-    	</div>
-    	<div class=footer-bottom>
-    	</div>
-    </footer>
+    
     <script type="text/javascript">
 			$(window).load(function() {
 			// We only want these styles applied when javascript is enabled

@@ -1,34 +1,20 @@
-<%@page import="acorn.dto.ServiceDto"%>
-<%@page import="acorn.dao.MemberDao"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String cPath=request.getContextPath();
-	int mem_num = Integer.parseInt(request.getParameter("mem_num"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style>
-	.table{
-		text-align: center;
-	}
-	.table th{
-		text-align: center;
-	}
-</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700' rel='stylesheet' type='text/css'>
 
-<link rel="stylesheet" href="../resource/css/reset.css"> <!-- CSS reset -->
-<link rel="stylesheet" href="../resource/css/style.css"> <!-- Resource style -->
-<script src="../resource/js/modernizr.js"></script> <!-- Modernizr -->
-<title>나의 문의 내역입니다.</title>
-
+<link rel="stylesheet" href="<%=cPath %>/resource/css/reset.css"> <!-- CSS reset -->
+<link rel="stylesheet" href="<%=cPath %>/resource/css/style.css"> <!-- Resource style -->
+<script src="<%=cPath %>/resource/js/modernizr.js"></script> <!-- Modernizr -->
+<title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="../index_navbar.jsp"></jsp:include>
 <nav id="cd-lateral-nav">
 		<ul class="cd-navigation">
 			<li class="item-has-children">
@@ -85,38 +71,7 @@
 			<a class="cd-google cd-img-replace" href="#0">Google Plus</a>
 		</div> <!-- socials -->
 	</nav>
-<div id="contentsbox" class="container">
-	<div class="jumbotron">
-	  <h2> 나의 문의 내역 입니다.</h2>
-	</div>
-	
-	<%
-		MemberDao dao=MemberDao.getInstance();
-		List<ServiceDto> list=dao.mysergetList(mem_num);
-	%>
-	
-	<!-- table -->
-	<div class="table-responsive">
-		<table class="table table-striped table-hover">
-			<thead>
-				<tr class="info">
-					<th>글 제목</th>
-					<th>작성일</th>
-				</tr>
-			</thead>
-			<tbody>
-				<%for(ServiceDto tmp:list){ %>
-					<tr>
-						<td><a href="ser_detail.jsp?mem_num=<%=mem_num%>"><%=tmp.getTitle() %></a></td>
-						<td><%=tmp.getRegdate() %></td>
-					</tr>
-				<%} %>
-			</tbody>
-		</table>
-	</div>
-</div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="../resource/js/main.js"></script> <!-- Resource jQuery -->
-
+<script src="<%=cPath %>/resource/js/main.js"></script> <!-- Resource jQuery -->
 </body>
 </html>

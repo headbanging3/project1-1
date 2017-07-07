@@ -87,18 +87,6 @@ footer {
 	background-position: -240px 0
 }
 
-.footer-top {
-	padding: 20px 30px;
-	border-top: 1px solid #2c2c2c;
-	background-color: #1d1d1d;
-}
-
-.footer-bottom {
-	padding: 40px 0 60px;
-	background-color: #1d1d1d;
-	border-top: 1px solid #2c2c2c;
-	text-align: center;
-}
 .pagination{
 	background-color: #000;
 }
@@ -131,11 +119,10 @@ footer {
 <body>
 <jsp:include page="index_navbar.jsp"></jsp:include>
 
-
 <div>
 	<div>
 	<h3 class="a">nike</h3>
-	<a id="bg2" class="btn" href="user_page/index.jsp">구매하기</a>
+	<a id="bg2" class="btn" href="userpage/index.jsp">구매하기</a>
 	<a id="bg" class="btn <%=manager %>" href="manager/" role="button">관리자페이지</a>
 	<img id="animal" src="resource/nike/애니멀.png" />
 	<img src="resource/nike/나이키.png"  />
@@ -175,9 +162,7 @@ footer {
 			</div>
 		</div>
 </div>
-	<footer>
-		<div class=footer-top></div>
-		<div class=footer-bottom></div>
-	</footer>
+<!-- ****************footer**************** -->
+	<jsp:include page="/userpage/inc/footer.jsp"></jsp:include>
 </body>
 </html>
