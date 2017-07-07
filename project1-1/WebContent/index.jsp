@@ -17,16 +17,106 @@
 </head>
 <body>
 <style>
-	.hide {
-		display:none;
-	}
-	#bg{
-		margin-left:-245px;
-	}
-	img{
-		width:100%;
-	}
+.hide {
+	display: none;
+}
 
+img {
+	width: 100%;
+}
+
+#bg {
+	position: absolute;
+	margin-top: 50px;
+}
+
+footer {
+	width: 100%;
+}
+
+.phone-numb {
+	display: inline-block;
+	font-size: 42px;
+	line-height: 1.2em;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	letter-spacing: -1px;
+	margin-top: -4px
+}
+
+.phone-numb span {
+	display: inline-block;
+	font-size: 28px;
+	color: #949494;
+	padding-top: 3px
+}
+
+.list-services {
+	padding: 0
+}
+
+.list-services li {
+	float: left;
+	padding: 0 0 0 20px
+}
+
+.list-services li:first-child {
+	padding: 0
+}
+
+.list-services li a {
+	display: block;
+	width: 60px;
+	height: 45px;
+	background: url(../images/social-icons.png) left top no-repeat;
+}
+
+.list-services li a.item-2 {
+	background-position: -80px 0
+}
+
+.list-services li a.item-3 {
+	background-position: -160px 0
+}
+
+.list-services li a.item-4 {
+	background-position: -240px 0
+}
+
+.footer-top {
+	padding: 20px 30px;
+	border-top: 1px solid #2c2c2c;
+	background-color: #1d1d1d;
+}
+
+.footer-bottom {
+	padding: 40px 0 60px;
+	background-color: #1d1d1d;
+	border-top: 1px solid #2c2c2c;
+	text-align: center;
+}
+.pagination{
+	background-color: #000;
+}
+.pagination li{
+	background-color: #000;
+}
+#bg{
+	background-color: #000;
+}
+#bg2{
+	background-color: #000;
+	color: #fff;
+	position : absolute;
+	margin-top: 140px;
+	margin-left: 100px;
+	font-size: 20px;
+}
+#animal{
+	position:absolute;
+	width:15%;
+	margin-top: 70px;
+	margin-left: 100px;
+}
 </style>
 </head>
 
@@ -34,16 +124,19 @@
 <jsp:include page="index_navbar.jsp"></jsp:include>
 
 <div class="container">
-	<h3>메인 페이지 입니다</h3>
-	<div id="bg" class="col-xs-12">
-		<ul class="pagination">
-			<li class="<%=manager%>"><a href="manager/">관리자페이지</a></li>
-			<li><a href="user_page/index.jsp">유저페이지</a></li>
-		</ul>
-	</div>
+	<h3>nike</h3>
+	
 </div>
 <div>
+	<div>
+
+	<a id="bg" class="btn <%=manager %>" href="manager/" role="button">관리자페이지</a>
+	<a id="bg2" class="btn" href="user_page/index.jsp">구매하기</a>
+	<img id="animal" src="resource/nike/애니멀.png" />
 	<img src="resource/nike/나이키.png"  />
+	
+	</div>
+	
 	<img src="resource/nike/나이키2.png"  />
 </div>
 	
@@ -77,5 +170,9 @@
 			</div>
 		</div>
 </div>
+	<footer>
+		<div class=footer-top></div>
+		<div class=footer-bottom></div>
+	</footer>
 </body>
 </html>
