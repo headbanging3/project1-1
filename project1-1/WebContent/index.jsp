@@ -97,7 +97,9 @@ footer {
 	padding: 40px 0 60px;
 	background-color: #1d1d1d;
 	border-top: 1px solid #2c2c2c;
-	text-align: center;
+	text-align: left;
+	color:#6A6C61;
+	
 }
 .pagination{
 	background-color: #000;
@@ -177,7 +179,16 @@ footer {
 </div>
 	<footer>
 		<div class=footer-top></div>
-		<div class=footer-bottom></div>
+
+		<div class=footer-bottom>
+			<ul>
+				<li>대표: 에이콘아카데미</li>
+				<li>주소: 동아빌딩15F</li>
+				<li>ⓒ 2017. Acorn all rights reserved.</li>
+				<li>Copyright(c)2017 by Acorn. All Page content is property of Acorn</li>
+				<li>Copyright(c)2017 by Acorn. All pictures cannot be copied without permission. </li>
+			</ul>
+		</div>
 	</footer>
 </body>
 </html>
