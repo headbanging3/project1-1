@@ -31,8 +31,12 @@ img {
 }
 
 #bg {
-	position: absolute;
-	margin-top: 50px;
+	background-color: #000;
+	color: #fff;
+	position : absolute;
+	margin-top: 140px;
+	margin-left: 230px;
+	font-size: 20px;
 }
 
 footer {
@@ -135,8 +139,8 @@ footer {
 <div>
 	<div>
 	<h3 class="a">nike</h3>
-	<a id="bg" class="btn <%=manager %>" href="manager/" role="button">관리자페이지</a>
 	<a id="bg2" class="btn" href="user_page/index.jsp">구매하기</a>
+	<a id="bg" class="btn <%=manager %>" href="manager/" role="button">관리자페이지</a>
 	<img id="animal" src="resource/nike/애니멀.png" />
 	<img src="resource/nike/나이키.png"  />
 	
