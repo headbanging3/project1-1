@@ -19,8 +19,6 @@
 </head>
 <body>
 <style>
-
-	
 	.hide {
 		display:none;
 	}

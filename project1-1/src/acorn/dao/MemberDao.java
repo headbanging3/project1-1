@@ -480,6 +480,35 @@ public class MemberDao {
 			return false;
 		}
 	}// qnaInsert();
+	
+	//상품 문의 리스트 게시글 삭제
+	public boolean qnaDelete(int listnum){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "DELETE FROM qnalist WHERE qna_listnum=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, listnum);
+			flag = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}//qnaDelete();
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
