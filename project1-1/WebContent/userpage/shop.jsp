@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="inc/header.jsp"></jsp:include>        
+<style>
+img{
+	margin-left:30px
+}
+
+</style>
 <!-- content -->
     <section id="content">
         <div class="bg-top">
@@ -98,11 +104,18 @@
             </div>	
         </div>
 	</section>
-	<footer>       	
-   		<div class=footer-top>
-    	</div>
-    	<div class=footer-bottom>
-    	</div>
-    </footer>
+	<footer>
+		<div class=footer-top></div>
+
+		<div class=footer-bottom>
+			<ul>
+				<li>대표: 에이콘아카데미</li>
+				<li>주소: 동아빌딩15F</li>
+				<li>ⓒ 2017. Acorn all rights reserved.</li>
+				<li>Copyright(c)2017 by Acorn. All Page content is property of Acorn</li>
+				<li>Copyright(c)2017 by Acorn. All pictures cannot be copied without permission. </li>
+			</ul>
+		</div>
+	</footer>
 </body>
 </html>
