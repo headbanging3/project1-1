@@ -13,10 +13,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 </head>
 <body>
 <style>
+
+	
 	.hide {
 		display:none;
 	}
@@ -27,6 +31,8 @@
 		width:100%;
 	}
 
+	.a { font-family: 'Indie Flower', cursive; 
+		 font-size: 100px;}
 </style>
 </head>
 
@@ -34,7 +40,7 @@
 <jsp:include page="index_navbar.jsp"></jsp:include>
 
 <div class="container">
-	<h3>메인 페이지 입니다</h3>
+	<h3 class="a">nike</h3>
 	<div id="bg" class="col-xs-12">
 		<ul class="pagination">
 			<li class="<%=manager%>"><a href="manager/">관리자페이지</a></li>
