@@ -19,25 +19,13 @@
 </head>
 <body>
 <style>
-<<<<<<< HEAD
-.hide {
-	display: none;
-}
-=======
 
 	
-	.hide {
-		display:none;
-	}
-	#bg{
-		margin-left:-245px;
-	}
-	img{
-		width:100%;
-	}
->>>>>>> branch 'master' of https://github.com/headbanging3/project1-1.git
+.hide {
+	display:none;
+}
 
-<<<<<<< HEAD
+
 img {
 	width: 100%;
 }
@@ -135,8 +123,7 @@ footer {
 	margin-left: 100px;
 }
 
-	.a { font-family: 'Indie Flower', cursive; 
-		 font-size: 100px;}
+.a { font-family: 'Indie Flower', cursive; font-size: 100px; text-align:center;}
 
 </style>
 </head>
