@@ -9,8 +9,8 @@
 	String indent = "";
 	
 	List<ItemDto> itemList =ItemDao.getInstance().getItemList();
-	String root =request.getSession().getServletContext().getRealPath("/upload/");
-	
+	String root =(String)request.getContextPath();
+	int i;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="inc/header.jsp"></jsp:include>        
@@ -36,32 +36,61 @@ img{
                                                 	<h3 class="p0">개간지 운동화 비쌈</h3>
                                                 </div>                                                
                                                 <div class="wrapper">
-                                               <%for(int i=0;i<itemList.size();i++){
-                                            	   	if(i>3) break;
-													ItemDto item = itemList.get(i);
-													if(i==1) {
-														grid="alpha";
-														indent="indent-left";
-													}else if(i==2){
-														grid="";
-														indent="indent3";
-													}else{
-														grid="omega";
-														indent="indent-right";
-													}				
-												%>
-													<article class="grid_4 <%=grid%>">
-	                                                      <div class=<%=indent %>>
-	                                                          <figure class="frame2 p2"><img src="/upload/<%=item.getMain_Img() %>" alt="" /></figure>
-	                                                          <p class="color-4 prev-indent-bot"><%=item.getPname() %></p>
-	                                                          <p><%=item.getComments() %></p>
-	                                                          <div class="wrapper">
-	                                                          	<span class="price fleft"><%=item.getPrice() %>원</span>
-	                                                              <a class="button fright" href="detail.jsp">Read More</a>
-	                                                          </div>
-	                                                      </div>
-	                                                </article>
-												<%} %><!-- 
+	                                               <%for(i=0;i<itemList.size();i++){
+	                                            	   	if(i>3) break;
+														ItemDto item = itemList.get(i);
+														if(i==1) {
+															grid="alpha";
+															indent="indent-left";
+														}else if(i==2){
+															grid="";
+															indent="indent3";
+														}else{
+															grid="omega";
+															indent="indent-right";
+														}				
+													%>
+														<article class="grid_4 <%=grid%>">
+		                                                      <div class=<%=indent %>>
+		                                                          <figure class="frame2 p2"><img src="../upload/<%=item.getMain_Img() %>" alt="" /></figure>
+		                                                          <p class="color-4 prev-indent-bot"><%=item.getPname() %></p>
+		                                                          <p><%=item.getComments() %></p>
+		                                                          <div class="wrapper">
+		                                                          	<span class="price fleft"><%=item.getPrice() %>원</span>
+		                                                              <a class="button fright" href="detail.jsp?pno=<%=item.getPno()%>">Read More</a>
+		                                                          </div>
+		                                                      </div>
+		                                                </article>	                                           	                                            
+													<%} %>
+												</div>
+													<%for(i=3;i<itemList.size();i++){
+	                                            	   	if(i>5 && itemList.size()>6) break;
+														ItemDto item = itemList.get(i);
+														if(i==1) {
+															grid="alpha";
+															indent="indent-left";
+														}else if(i==2){
+															grid="";
+															indent="indent3";
+														}else{
+															grid="omega";
+															indent="indent-right";
+														}				
+													%>
+														<article class="grid_4 <%=grid%>">
+		                                                      <div class=<%=indent %>>
+		                                                          <figure class="frame2 p2"><img src="../upload/<%=item.getMain_Img() %>" alt="" /></figure>
+		                                                          <p class="color-4 prev-indent-bot"><%=item.getPname() %></p>
+		                                                          <p><%=item.getComments() %></p>
+		                                                          <div class="wrapper">
+		                                                          	<span class="price fleft"><%=item.getPrice() %>원</span>
+		                                                              <a class="button fright" href="detail.jsp?pno=<%=item.getPno()%>">Read More</a>
+		                                                          </div>
+		                                                      </div>
+		                                                </article>	                                           	                                            
+													<%} %>
+												<div class="wrapper">
+												<!-- 
                                                     <article class="grid_4 alpha">
                                                         <div class="indent-left">
                                                             <figure class="frame2 p2"><img src="images/nike1.png" alt="" /></figure>
@@ -131,6 +160,7 @@ img{
                                                             </div>
                                                         </div>
                                                     </article>-->
+                                                
                                                 </div>
                                             </div>
                                         </div>
