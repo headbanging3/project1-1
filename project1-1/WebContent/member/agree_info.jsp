@@ -58,7 +58,7 @@
 		var ag1=$("input:checkbox[id=agree1]").is(':checked');
 		var ag2=$("input:checkbox[id=agree2]").is(':checked');
 		if(ag1 && ag2){
-			location.href="signup_form.jsp";
+			location.href="signup_form.do";
 		}else{
 			alert("개인정보 동의에 체크 해주세요.");
 		}

@@ -72,7 +72,7 @@
 		}
 		//data를 전달해서 유효값 불러오기
 		$.ajax({
-			url:"find_id_ajax.jsp",
+			url:"find_id_ajax.do",
 			method:"POST",
 			data:{memName:memName,
 					memEmail:memEmail},
@@ -99,14 +99,14 @@
 		}
 		//data를 전달해서 유효값 불러오기
 		$.ajax({
-			url:"find_pwd_ajax.jsp",
+			url:"find_pwd_ajax.do",
 			method:"POST",
 			data:{memId:memId,
 					memPhone:memPhone},
 			success:function(data){
 				var obj=JSON.parse(data);
 				if(obj.pwd==""){
-					alert("아이디 또는 번호를 확인해주세요.");
+					alert("아이디 또는 전화번호를 확인해주세요.");
 				}else{
 					alert(obj.pwd);	
 				}
