@@ -71,7 +71,7 @@ String cPath=(String)request.getContextPath();
         <a href="<%=cPath %>/manager/index.jsp">Main</a>
       </li>
       <li><a href="<%=cPath %>/manager/m_list.jsp">회원목록보기</a></li>
-      <li><a href="<%=cPath %>/manager/itemManagement/item_list.jsp">상품관리</a></li>
+      <li><a href="<%=cPath %>/productManagement/product_list.do">상품관리</a></li>
       <li><a href="#">메뉴 3</a></li>
       <li><a href="#">메뉴 4</a></li>
       <li><a href="#">메뉴 5</a></li>

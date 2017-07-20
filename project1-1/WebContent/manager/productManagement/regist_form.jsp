@@ -8,7 +8,7 @@
 </head>
 <body>
 <jsp:include page="../menu.jsp"/>
-	<form action="regist_confirm.jsp" method="post" enctype="multipart/form-data">
+	<form action="regist_confirm.do" method="post" enctype="multipart/form-data">
 		상품명 : <input type="text" name="pname" /><br/>
 		상품번호 : <input type="text" name="pno" /><br/>
 		짧은설명 : <input type="text" name="comments" /><br/>
