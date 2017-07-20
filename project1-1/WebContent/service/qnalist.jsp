@@ -22,12 +22,15 @@
 		margin-top:60px;
 		text-align:center;
 	}
-	a{
+	#addQna{
 		float:right;
 	}
 	
 	h3{
 		color:#fff;
+	}
+	tr{
+		text-align:center;
 	}
 </style>
 </head>
@@ -70,7 +73,15 @@
             </tbody>
         </table>
         <div class="panel-footer">
-           책임자 = 호궁환
+         	<ul class="pagination">
+		 		<li class="disabled"><a href="javascript:">&laquo;</a></li>
+		 		<li class="active"><a href="#">1</a></li>
+		 		<li><a href="#">2</a></li>
+		 		<li><a href="#">3</a></li>
+		 		<li><a href="#">4</a></li>
+		 		<li><a href="#">5</a></li>
+		 		<li><a href="#">&raquo;</a></li>
+		 	</ul>
             <a href="qnainsert_form.jsp" id="addQna">글작성</a>
         </div>
     </div>

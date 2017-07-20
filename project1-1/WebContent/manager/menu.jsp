@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%
+String cPath=(String)request.getContextPath();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -66,10 +68,10 @@
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
-        <a href="index.jsp">Main</a>
+        <a href="<%=cPath %>/manager/index.jsp">Main</a>
       </li>
-      <li><a href="m_list.jsp">회원목록보기</a></li>
-      <li><a href="#">메뉴 2</a></li>
+      <li><a href="<%=cPath %>/manager/m_list.jsp">회원목록보기</a></li>
+      <li><a href="<%=cPath %>/manager/itemManagement/item_list.jsp">상품관리</a></li>
       <li><a href="#">메뉴 3</a></li>
       <li><a href="#">메뉴 4</a></li>
       <li><a href="#">메뉴 5</a></li>

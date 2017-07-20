@@ -7,20 +7,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import acorn.dto.MemberDto;
 import acorn.dto.QnaListDto;
 import acorn.dto.ServiceDto;
+import acorn.mybatis.SqlMapConfig;
 import util.DbcpBean;
 
 public class MemberDao {
 	private static MemberDao dao;
-
+	private static SqlSessionFactory factory;
 	private MemberDao() {
 	}
 
 	public static MemberDao getInstance() {
 		if (dao == null) {
 			dao = new MemberDao();
+			factory=SqlMapConfig.getSqlSession();
 		}
 		return dao;
 	}
@@ -238,179 +243,42 @@ public class MemberDao {
 	//////////////////////////////////////////////// 웅환
 	//////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////////////
 	// 회원가입 dao(웅환)
-	public boolean insert(MemberDto dto) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int flag = 0;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "INSERT INTO member(mem_num,id,pwd,name,phone,email,addr,regdate) "
-					+ "VALUES(member_seq.NEXTVAL,?,?,?,?,?,?,SYSDATE)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getPwd());
-			pstmt.setString(3, dto.getName());
-			pstmt.setString(4, dto.getPhone());
-			pstmt.setString(5, dto.getEmail());
-			pstmt.setString(6, dto.getAddr());
-			flag = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
-		if (flag > 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}// inert();
+	public void memberInsert(MemberDto dto){
+		SqlSession session=factory.openSession(true);
+		session.insert("acorn.memberInsert",dto);
+		session.close();
+	}
 
 	// 아이디 찾기 dao(웅환)
-	public String findId(String name, String email) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		MemberDto dto = new MemberDto();
-		String id = "";
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "SELECT id FROM member " + "WHERE name=? AND email=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, name);
-			pstmt.setString(2, email);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				id = rs.getString("id");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-
-			} catch (Exception e) {
-			}
-		}
+	public String findId(MemberDto dto){
+		SqlSession session=factory.openSession();
+		String id=session.selectOne("acorn.memberFindId",dto);
+		session.close();
 		return id;
-
-	}// findId();
+	}
 
 	// 비밀번호 찾기 dao(웅환)
-	public String findPwd(String id, String phone) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String pwd = "";
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "SELECT pwd FROM member " + "WHERE id=? AND phone=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, phone);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				pwd = rs.getString("pwd");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
+	public String findPwd(MemberDto dto){
+		SqlSession session=factory.openSession();
+		String pwd=session.selectOne("acorn.memberFindPwd",dto);
+		session.close();
 		return pwd;
-	}// findPwd();
+	}
 
 	// 아이디 중복값을 DB와 비교하기 위한 dao(웅환)
-	public String isOverlab(String inputId) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String id = "";
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "SELECT id FROM member " + "WHERE id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, inputId);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				id = rs.getString("id");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
-		return id;
-
+	public String isOverlab(String id) {
+		SqlSession session=factory.openSession();
+		String id2=session.selectOne("acorn.memberOverlab",id);
+		session.close();
+		return id2;
 	}// overlab();
 
 	// 상품문의 리스트를 출력해주는 메소드
-	public List<QnaListDto> getQnaList() {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		QnaListDto dto = null;
-		List<QnaListDto> list = new ArrayList<>();
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "SELECT qna_listnum, qna_title, qna_pdnum, qna_writer, qna_content, "
-					+ "TO_CHAR(qna_regdate,'YYYY.MM.DD') AS qna_regdate "
-					+ "FROM qnalist ORDER BY qna_listnum DESC";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				int listnum = rs.getInt("qna_listnum");
-				String title = rs.getString("qna_title");
-				int pdnum = rs.getInt("qna_pdnum");
-				String writer = rs.getString("qna_writer");
-				String content = rs.getString("qna_content");
-				String regdate = rs.getString("qna_regdate");
-
-				dto = new QnaListDto(listnum, title, pdnum, writer, content, regdate);
-				list.add(dto);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
+	public List<QnaListDto> getQnaList(){
+		SqlSession session=factory.openSession();
+		List<QnaListDto> list=session.selectList("service.getQnaList");
 		return list;
-	}// getQnaList();
+	}
 
 	public QnaListDto qnaDetail(int listnum) {
 		Connection conn = null;
