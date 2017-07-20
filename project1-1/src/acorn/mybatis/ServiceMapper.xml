@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="service">
+	<select id="getQnaList" resultType="acorn.dto.QnaListDto">
+		<!-- SELECT *
+		FROM	(SELECT result1.*, ROWNUM rnum
+				FROM (SELECT qna_listnum, qna_title, qna_pdnum, qna_writer, qna_content, 
+						TO_CHAR(qna_regdate,'YYYY.MM.DD') AS qna_regdate 
+						FROM qnalist ORDER BY qna_listnum DESC) result1)
+		WHERE qna_listnum BETWEEN #{startRowNum} AND #{endRowNum} -->
+		SELECT qna_listnum, qna_title, qna_pdnum, qna_writer, qna_content, 
+			TO_CHAR(qna_regdate,'YYYY.MM.DD') AS qna_regdate 
+		FROM qnalist ORDER BY qna_listnum DESC
+	
+	</select>
+</mapper>

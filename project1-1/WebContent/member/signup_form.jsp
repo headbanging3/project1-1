@@ -42,7 +42,7 @@
 		 <div class="panel-heading">
           	<h1 class="panel-title">회원가입</h1>
         </div>
-        	<form action="signup.jsp" class="form-inline" method=post id="signup">
+        	<form action="signup.do" class="form-inline" method=post id="signup">
 				 <div class="form-group">	
 				 	<label for="id">* 아이디 : </label>
 					<input type="text" class="form-control" name="id" id="id" placeholder="영문자5~15자"/>
@@ -68,7 +68,7 @@
 				<div class="form-group">
 					<label for="email">이메일 : </label>
 					<input type="text" class="form-control" name="email" id="email" />
-				</div>
+				</div>sss
 				<div class="form-group">
 					<label for="addr">주소 : </label>
 					<input type="text" class="form-control" name="addr" id="addr" /><br />
@@ -89,7 +89,7 @@
 
 	//취소 버튼 클릭시 index페이지로 이동
 	$("#cancel").on("click",function(){
-		location.href="../index.jsp";
+		location.href="/index.do";
 	});
 	
 	//아이디 및 비밀번호 정규식
@@ -119,13 +119,20 @@
 		var inputId=$("#id").val();
 		var idMatching=reg1.test(inputId);
 		var isOverlab=false;
+		
+		if(inputId==""){
+			alert("아이디를 입력하세요.");
+			return false;
+		}
+		
 		//DB에 중복된 ID가 있는지 확인을 위한 ajax통신
 		$.ajax({
-			url:"overlab.jsp",
+			url:"overlab.do",
 			method:"POST",
 			data:{id:inputId},
 			success:function(data){
 				var obj=JSON.parse(data);
+				
 				if(inputId==obj.id){
 					alert("아이디가 존재 합니다.");
 					return false;

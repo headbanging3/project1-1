@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="acorn">
+	<select id="memberInsert">
+		INSERT INTO member(mem_num,id,pwd,name,phone,email,addr,regdate) 
+		VALUES(member_seq.NEXTVAL, #{id}, #{pwd}, #{name}, #{phone}, #{email}, #{addr},SYSDATE)
+	</select>
+	<select id="memberFindId" parameterType="acorn.dto.MemberDto" resultType="String">
+		SELECT id FROM member WHERE name=#{name} AND email=#{email}
+	</select>
+	<select id="memberFindPwd" parameterType="acorn.dto.MemberDto" resultType="String">
+		SELECT pwd FROM member WHERE id=#{id} AND phone=#{phone}
+	</select>
+	<select id="memberOverlab" parameterType="String" resultType="String">
+		SELECT id FROM member WHERE id=#{id}
+	</select>
+</mapper>

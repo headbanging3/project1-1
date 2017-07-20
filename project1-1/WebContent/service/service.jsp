@@ -13,11 +13,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>고객센터</title>
-<link rel="stylesheet" href="<%=cPath %>/resource/css/bootstrap.min.css" />
-<link rel="stylesheet" href="<%=cPath %>/resource/css/custom.css" />
+<link rel="stylesheet" href="../resource/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../resource/css/custom.css" />
 </head>
 <body>
-	<jsp:include page="<%=cPath %>/index_navbar.jsp"></jsp:include>
+	<jsp:include page="../index_navbar.jsp"></jsp:include>
 	<div class="jumbotron">
 		<h3>고객센터 페이지 입니다.</h3>
 		<h1>무엇을 도와드릴까요?</h1>
@@ -70,8 +70,8 @@
 				class="btn btn-default col-xs-2 col-xs-offset-10" <%if (id == null) {%> disabled<%} %>>제출</button>
 		</form>
 	</div>
-	<script src="resource/js/jquery-3.2.0.js"></script>
-	<script src="resource/js/bootstrap.min.js"></script>
+	<script src="../resource/js/jquery-3.2.0.js"></script>
+	<script src="../resource/js/bootstrap.min.js"></script>
 	<script>
 
  	//팝업 띄우는 함수 
