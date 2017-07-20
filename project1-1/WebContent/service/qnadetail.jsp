@@ -47,12 +47,7 @@
 </div>
 <script src="../resource/js/jquery-3.2.0.js"></script>
 
-<%if(id.equals(dto.getQna_writer())){%>
-	<script>
-		$("#delQna").css("display","block");
-	</script>
-<%}%>
-	
+
 
 </body>
 </html>
