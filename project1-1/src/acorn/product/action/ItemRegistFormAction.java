@@ -3,8 +3,9 @@ package acorn.product.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import acorn.product.controller.Action;
-import acorn.product.controller.ActionForward;
+import acorn.controller.Action;
+import acorn.controller.ActionForward;
+
 
 public class ItemRegistFormAction extends Action {
 

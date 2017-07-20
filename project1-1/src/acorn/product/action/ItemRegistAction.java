@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import acorn.product.controller.Action;
-import acorn.product.controller.ActionForward;
+import acorn.controller.Action;
+import acorn.controller.ActionForward;
 import acorn.product.dao.ItemDao;
 import acorn.product.dto.ItemDto;
 
