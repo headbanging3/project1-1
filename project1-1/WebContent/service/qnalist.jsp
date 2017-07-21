@@ -4,13 +4,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("utf-8");
-	response.setCharacterEncoding("utf-8");
-	List<QnaListDto> list=MemberDao.getInstance().getQnaList();
-	String id=(String)session.getAttribute("id");
-	System.out.println(id);
-%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -54,46 +48,67 @@
                 </tr>
             </thead>
             <tbody>
-            	<%if(list.size()==0){%>
-            		<tr>
-            			<td colspan="5">게시글이 없습니다.</td>
-            		</tr>	
-            	<%}else {
-            		for(int i=0; i<list.size(); i++){
-            			QnaListDto dto=list.get(i); %>
-	                <tr>
-	                    <td><%=dto.getQna_listnum() %></td>
-	                    <td><a href="qnadetail.jsp?qna_listnum=<%=dto.getQna_listnum()%>"><%=dto.getQna_title() %></a></td>
-	                    <td><%=dto.getQna_pdnum() %></td>
-	                    <td><%=dto.getQna_writer() %></td>
-	                   	<td><%=dto.getQna_regdate() %></td>
-	                </tr>
-                	<% }%>
-            	<%}%>
+           		<c:choose>
+           			<c:when test="${empty list }">
+           				<tr>
+           					<td colspan="5">게시글이 없습니다.</td>
+           				</tr>	
+           			</c:when>	
+           			<c:otherwise>
+           				<c:forEach var="tmp" items="${list }">
+           					<tr>
+			                    <td>${tmp.qna_listnum }</td>
+			                    <td><a href="qnadetail.do?qna_listnum=${tmp.qna_listnum }">${tmp.qna_title }</a></td>
+			                    <td>${tmp.qna_pdnum }</td>
+			                    <td>${tmp.qna_writer }</td>
+			                   	<td>${tmp.qna_regdate }</td>
+			                </tr>
+	      				</c:forEach>			
+           			</c:otherwise>
+           		</c:choose>
             </tbody>
         </table>
         <div class="panel-footer">
-         	<ul class="pagination">
-		 		<li class="disabled"><a href="javascript:">&laquo;</a></li>
-		 		<li class="active"><a href="#">1</a></li>
-		 		<li><a href="#">2</a></li>
-		 		<li><a href="#">3</a></li>
-		 		<li><a href="#">4</a></li>
-		 		<li><a href="#">5</a></li>
-		 		<li><a href="#">&raquo;</a></li>
-		 	</ul>
+         	<div class="page_display">
+				<c:choose>
+					<c:when test="${startPageNum ne 1 }">
+						<a href="list.do?pageNum=${startPageNum-1 }">[ 이전 ]</a>
+					</c:when>
+					<c:otherwise>
+						<a class="muted" href="javascript:">[ 이전 ]</a>
+					</c:otherwise>
+				</c:choose>
+			
+				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+					<c:choose>
+						<c:when test="${i eq pageNum }">
+							<a  class="active" href="list.do?pageNum=${i }">${i }</a>
+						</c:when>
+						<c:otherwise>
+							<a href="list.do?pageNum=${i }">${i }</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				
+				<c:choose>
+					<c:when test="${endPageNum lt totalPageCount }">
+						<a href="list.do?pageNum=${endPageNum+1 }">[ 다음 ]</a>
+					</c:when>
+					<c:otherwise>
+						<a class="muted" href="javascript:">[ 다음 ]</a>
+					</c:otherwise>
+				</c:choose>
+			</div>
             <a href="qnainsert_form.jsp" id="addQna">글작성</a>
         </div>
     </div>
 </div>
 <script src="../resource/js/jquery-3.2.0.js"></script>
-<script>
-	<%if(id==null){%>
+<c:if test="${empty sessionScope.id }">
+	<script>
 		$("#addQna").css("display","none");
-	<%}%>
-	
-	
-	
-</script>
+	</script>
+</c:if>
+
 </body>
 </html>
