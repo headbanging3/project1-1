@@ -1,5 +1,6 @@
 package acorn.controller;
 
+import acorn.action.HomeAction;
 import acorn.member.action.AgreeInfo;
 import acorn.member.action.MemberFindIdAction;
 import acorn.member.action.MemberFindIdAjaxAction;
@@ -55,6 +56,8 @@ public class UserActionFactory {
 			action=new ItemRegistFormAction();
 		}else if(command.equals("/productManagement/regist_confirm")){
 			action=new ItemRegistAction();
+		}else if(command.equals("/home")) {
+			action = new HomeAction();
 		}
 		return action;
 	}
