@@ -8,6 +8,7 @@ import acorn.member.action.MemberIndexAction;
 import acorn.member.action.MemberOverlabAction;
 import acorn.member.action.MemberSignUpAction;
 import acorn.member.action.MemberSignUpFormAction;
+import acorn.service.action.QnaDetailAction;
 import acorn.service.action.ServiceQnalistAction;
 
 public class UserActionFactory {
@@ -42,7 +43,10 @@ public class UserActionFactory {
 			action=new MemberOverlabAction();
 		}else if(command.equals("/service/qnalist")){
 			action=new ServiceQnalistAction();
+		}else if(command.equals("/service/qnadetail")){
+			action=new QnaDetailAction();
 		}
+		
 		
 		
 		return action;
