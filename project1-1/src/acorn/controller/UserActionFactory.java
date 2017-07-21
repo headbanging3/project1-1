@@ -18,10 +18,10 @@ import acorn.member.action.MemberSigninFormAction;
 import acorn.product.action.ItemListAction;
 import acorn.product.action.ItemRegistAction;
 import acorn.product.action.ItemRegistFormAction;
+import acorn.service.action.QnaDeleteAction;
 import acorn.service.action.QnaDetailAction;
 import acorn.service.action.QnaInsertAction;
 import acorn.service.action.QnaInsertformAction;
-
 import acorn.service.action.ServiceQnalistAction;
 import acorn.userpage.action.ShopAction;
 
@@ -79,6 +79,12 @@ public class UserActionFactory {
 			action = new MupdateFormAction();
 		}else if(command.equals("/manager/private/update")) {
 			action = new MupdateAction();
+		}else if(command.equals("/service/qnainsert_form")){
+			action=new QnaInsertformAction();
+		}else if(command.equals("/service/qnainsert")){
+			action=new QnaInsertAction();
+		}else if(command.equals("/service/qnadelete")){
+			action=new QnaDeleteAction();
 		}
 		return action;
 	}
