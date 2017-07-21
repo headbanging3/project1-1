@@ -20,9 +20,30 @@
 		WHERE id=#{id} AND pwd=#{pwd}
 	</select>
 	<select id="getData" parameterType="String" resultType="acorn.dto.MemberDto">
-		SELECT id,pwd,email,phone,addr,regdate
+		SELECT id,pwd,name,email,phone,addr,regdate
 		FROM member
 		WHERE id=#{id}
 		
 	</select>
+	<delete id="delete" parameterType="String">
+ 		DELETE FROM member
+ 		WHERE id=#{id}	
+	</delete>
+	
+	<update id="update" parameterType="acorn.dto.MemberDto">
+		UPDATE member
+		SET pwd=#{pwd}, phone=#{phone}, email=#{email}, addr=#{addr}
+		WHERE id=#{id}
+	</update>
+	 
+		
+	
+	
+	
 </mapper>
+
+
+
+
+
+

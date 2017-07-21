@@ -419,33 +419,28 @@ public class MemberDao {
 		return dto;
 	}
 
-	public boolean delete(String id) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int flag = 0;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "delete from member where id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.executeQuery();
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
-		if (flag > 0) {
-			return true;
-		} else {
-			return false;
+	public void delete(String id) {
+		SqlSession session=factory.openSession(true);
+		try{
+			session.delete("acorn.delete",id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
 		}
 	}// delete
+	
+	//회원 정보 수정 반영하는 메소드
+	public void update(MemberDto dto){
+		SqlSession session=factory.openSession(true);
+		try{
+			session.update("acorn.update",dto);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

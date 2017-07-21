@@ -4,6 +4,7 @@ import acorn.action.HomeAction;
 import acorn.manager.action.MlistAction;
 import acorn.manager.action.MupdateFormAction;
 import acorn.member.action.AgreeInfo;
+import acorn.member.action.MemberDeleteAction;
 import acorn.member.action.MemberFindIdAction;
 import acorn.member.action.MemberFindIdAjaxAction;
 import acorn.member.action.MemberFindPwdAjaxAction;
@@ -15,6 +16,8 @@ import acorn.member.action.MemberSignUpFormAction;
 import acorn.member.action.MemberSigninAction;
 import acorn.member.action.MemberSigninFormAction;
 import acorn.member.action.MemberSignoutAction;
+import acorn.member.action.MemberUpdateAction;
+import acorn.member.action.MemberUpdateFormAction;
 import acorn.product.action.ItemListAction;
 import acorn.product.action.ItemRegistAction;
 import acorn.product.action.ItemRegistFormAction;
@@ -64,9 +67,9 @@ public class UserActionFactory {
 			action=new ItemRegistAction();
 		}else if(command.equals("/home")) {
 			action = new HomeAction();
-		}else if(command.equals("/loginresult")){
+		}else if(command.equals("/popup/loginresult")){
 			action = new MemberSigninAction();
-		}else if(command.equals("/signinform")){
+		}else if(command.equals("/popup/signinform")){
 			action = new MemberSigninFormAction();
 		}else if(command.equals("/manager/mlist")) {
 			action = new MlistAction();
@@ -76,6 +79,12 @@ public class UserActionFactory {
 			action = new MemberInfoAction();
 		}else if(command.equals("/manager/private/updateform2")) {
 			action = new MupdateFormAction();
+		}else if(command.equals("/member/delete")){
+			action = new MemberDeleteAction();
+		}else if(command.equals("/member/updateform")){
+			action = new MemberUpdateFormAction();
+		}else if(command.equals("/member/update")){
+			action = new MemberUpdateAction();
 		}
 		return action;
 	}
