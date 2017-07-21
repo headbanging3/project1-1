@@ -54,7 +54,7 @@
 				<td>${tmp.email }</td>
 				<td>${tmp.addr }</td>
 				<td>${tmp.regdate }</td>
-				<td><a href="private/updateform2.do?num=${tmp.mem_num }">수정</a></td>
+				<td><a href="updateform2.do?num=${tmp.mem_num }">수정</a></td>
 				<td><a href="delete.jsp?num=${tmp.mem_num }">삭제</a></td>
 			</tr>		
 		</c:forEach>

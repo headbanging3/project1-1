@@ -45,4 +45,11 @@ public class ItemDao {
 		session.close();
 		return result;
 	}//insert()
+
+// item 상세보기
+	public ItemDto getDetail(int pno) {
+		SqlSession session=factory.openSession(true);
+		ItemDto item = session.selectOne("item.detail", pno);
+		return item;
+	}
 }

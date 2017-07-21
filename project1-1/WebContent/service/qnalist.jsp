@@ -102,17 +102,23 @@
 						</c:otherwise>
 					</c:choose>
 				</ul>
-				   <a href="qnainsert_form.do" id="addQna">글작성</a>	
+				<c:choose>
+					<c:when test="${sessionScope.id eq null }">
+						<a href="javascript:showPopup()" id="addQna">글작성</a>
+					</c:when>
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath }/service/qnainsert_form.do" id="addQna">글작성</a>
+					</c:otherwise>
+				</c:choose>
 			</div>
         </div>
     </div>
 </div>
-<script src="../resource/js/jquery-3.2.0.js"></script>
-<c:if test="${empty sessionScope.id }">
-	<script>
-		$("#addQna").css("display","none");
-	</script>
-</c:if>
-
+<script>
+//팝업 띄우는 함수 
+function showPopup(){
+	window.open("${pageContext.request.contextPath}/signinform.do","팝업창","width=400,height=300,top=200,left=700");
+}
+</script>
 </body>
 </html>

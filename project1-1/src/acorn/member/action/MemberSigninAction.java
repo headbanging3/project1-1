@@ -12,6 +12,7 @@ public class MemberSigninAction extends Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("MemberSigninAction");
 		//로그인 성공후 이동할 url 주소
 		String url=request.getParameter("url");
 		String id=request.getParameter("id");
@@ -28,7 +29,7 @@ public class MemberSigninAction extends Action{
 		}else{
 			request.setAttribute("msg", "아이디 혹은 비밀번호가 틀려요");
 			String location=request.getContextPath()+
-			"/popup/popup_page";
+			"/popup/popup_page.jsp";
 			request.setAttribute("url", location);
 		}
 		

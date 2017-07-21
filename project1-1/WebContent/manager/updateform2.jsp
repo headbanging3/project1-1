@@ -17,10 +17,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="../menu.jsp"/>
+<jsp:include page="menu.jsp"/>
 <div class="container">
 
-    <form class="well form-horizontal" action="update.jsp" method="post"  id="contact_form">
+    <form class="well form-horizontal" action="update.do" method="post"  id="contact_form">
 <fieldset>
 
 <!-- Form Name -->
@@ -30,13 +30,13 @@
 
   
 <div class="form-group">
-  <input type="hidden" name="num" value="<%=dto.getMem_num()%>"/>
+  <input type="hidden" name="mem_num" value="<%=dto.getMem_num()%>"/>
   <label class="col-md-4 control-label">Number</label>  
   <div class="col-md-4 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   
-  <input  name="num"  class="form-control"  type="text" value ="<%=dto.getMem_num() %>" disabled/>
+  <input  name="mem_num"  class="form-control"  type="text" value ="<%=dto.getMem_num() %>" disabled/>
     </div>
   </div>
 </div>

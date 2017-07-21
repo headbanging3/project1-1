@@ -2,12 +2,7 @@
 <%@page import="acorn.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	int listnum=Integer.parseInt(request.getParameter("qna_listnum"));
-	QnaListDto dto=MemberDao.getInstance().qnaDetail(listnum);
-	String id=null;
-	if(session.getAttribute("id")!=null)id=(String)session.getAttribute("id");
-%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,28 +30,32 @@
 	<h3>상품문의</h3>
 	<div class="panel panel-default">
         <div class="panel-heading">
-            <h1 class="panel-title"><%=dto.getQna_title() %></h1>
+            <h1 class="panel-title">${dto.qna_title }</h1>
         </div>
         <div class="panel-body">
-            <%=dto.getQna_content() %>
+            ${dto.qna_content }
         </div>
         <div class="panel-footer">
-            <%=dto.getQna_writer() %>
-            <a href="qnadelete.jsp?listnum=<%=listnum %>" id="delQna">글삭제</a>
+         	작성자 : <strong>${dto.qna_writer }</strong>
+            <a href="javascript:deleteCheck()" id="delQna">글삭제</a>
         </div>
     </div>
 </div>
 <script src="../resource/js/jquery-3.2.0.js"></script>
-
-<%
-if(id!=null){
-if(id.equals(dto.getQna_writer())){%>
-	<script>
+<c:if test="${not empty sessionScope.id }">
+	<c:if test="${sessionScope.id eq dto.qna_writer }">
+		<script>
 		$("#delQna").css("display","block");
 	</script>
-<%}}%>
-	
-
+	</c:if>
+</c:if>
+<script>
+function deleteCheck(){
+	var isDelete=confirm("글을 삭제 하시겠습니까?");
+	if(isDelete){
+		location.href="qnadelete.do?listnum=${dto.qna_listnum }";
+	}
+}
+</script>
 </body>
-
 </html>

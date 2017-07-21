@@ -296,118 +296,6 @@ public class MemberDao {
 		return id2;
 	}// overlab();
 
-	// 상품문의 리스트를 출력해주는 메소드
-	public List<QnaListDto> getQnaList(QnaListDto dto){
-		SqlSession session=factory.openSession();
-		List<QnaListDto> list=null;
-		try{
-			list=session.selectList("service.getQnaList",dto);
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			session.close();
-		}
-		return list;
-	}
-	
-	//전체 row 갯수를 리턴해주는 메소드
-	public int getCount(){
-		SqlSession session=factory.openSession();
-		int count=0;
-		try{
-			count=session.selectOne("service.getCount");
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			session.close();
-		}
-		return count;
-	}
-
-	public QnaListDto qnaDetail(int listnum) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		QnaListDto dto = new QnaListDto();
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "SELECT qna_title, qna_writer, qna_content FROM qnalist WHERE qna_listnum=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, listnum);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				String title = rs.getString("qna_title");
-				String writer = rs.getString("qna_writer");
-				String content = rs.getString("qna_content");
-				dto.setQna_title(title);
-				dto.setQna_writer(writer);
-				dto.setQna_content(content);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
-		return dto;
-	}
-	
-
-	// 상품문의글 등록 메서드
-	public boolean qnaInsert(QnaListDto dto) {
-		SqlSession session=factory.openSession(true);
-		int isSuccess=0;
-		try{
-			isSuccess=session.insert("service.insertQna",dto);
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			session.close();
-		}
-		if(isSuccess>0){
-			return true;
-		}else{
-			return false;
-		}
-	}// qnaInsert();
-	
-	//상품 문의 리스트 게시글 삭제
-	public boolean qnaDelete(int listnum){
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int flag = 0;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "DELETE FROM qnalist WHERE qna_listnum=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, listnum);
-			flag = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
-		if (flag > 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}//qnaDelete();
-
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//////////////////////////////////////////////// 기성
@@ -449,67 +337,28 @@ public class MemberDao {
 		return dto;
 	}
 
-	// 회원정보를 수정하는 메소드
-	public boolean update(MemberDto dto) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int flag = 0;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "update member set pwd=?,phone=?,email=?,addr=? where id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getPwd());
-			pstmt.setString(2, dto.getPhone());
-			pstmt.setString(3, dto.getEmail());
-			pstmt.setString(4, dto.getAddr());
-			pstmt.setString(5, dto.getId());
-			pstmt.executeQuery();
-
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-			if (flag > 0) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-	}
-
-	public boolean delete(String id) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int flag = 0;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "delete from member where id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.executeQuery();
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
-		if (flag > 0) {
-			return true;
-		} else {
-			return false;
+	public void delete(String id) {
+		SqlSession session=factory.openSession(true);
+		try{
+			session.delete("acorn.delete",id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
 		}
 	}// delete
+	
+	//회원 정보 수정 반영하는 메소드
+	public void update(MemberDto dto){
+		SqlSession session=factory.openSession(true);
+		try{
+			session.update("acorn.update",dto);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
