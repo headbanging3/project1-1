@@ -15,7 +15,29 @@ public class ItemDto {
 	private String sub_Img4;
 	private String sub_Img5;
 	private String sub_Img6;
+	private int rowNum;
+	private String grid;
+	private String indent;
+
 	
+	public String getGrid() {
+		return grid;
+	}
+	public void setGrid(String grid) {
+		this.grid = grid;
+	}
+	public String getIndent() {
+		return indent;
+	}
+	public void setIndent(String indent) {
+		this.indent = indent;
+	}
+	public int getRowNum() {
+		return rowNum;
+	}
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
+	}
 	public String getPname() {
 		return pname;
 	}

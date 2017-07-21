@@ -1,6 +1,5 @@
-package acorn.product.action;
+package acorn.userpage.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,16 +10,12 @@ import acorn.controller.ActionForward;
 import acorn.product.dao.ItemDao;
 import acorn.product.dto.ItemDto;
 import util.ProductUtil;
-/*
- *  대문 페이지(index 페이지) 를 출력해주는 액션 클래스 정의하기 
- */
-public class ItemListAction extends Action{
+
+public class ShopAction extends Action{
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, 
-			HttpServletResponse response) {
-		 
-		//String grid = "alpha";
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
+		
 		List<ItemDto> itemList =ItemDao.getInstance().getItemList();
 		
 		for(ItemDto tmp: itemList){
@@ -34,24 +29,7 @@ public class ItemListAction extends Action{
 		
 		
 		// index 페이지를 출력할 뷰 페이지로 forward 이동
-		return new ActionForward("/manager/productManagement/product_list.jsp");
-		
+		return new ActionForward("/userpage/shop.jsp");
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
