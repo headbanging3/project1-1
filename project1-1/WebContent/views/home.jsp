@@ -3,7 +3,7 @@
 <%
 
 	String id =(String) session.getAttribute("id");
-	String manager="";
+	String manager="hide";
 	
 	if(id==null)
 		id="";
