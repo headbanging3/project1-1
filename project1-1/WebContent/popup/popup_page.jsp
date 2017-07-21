@@ -3,6 +3,7 @@
 
 
 <%
+	
 	//쿠키에 저장된 아이디를 담을 변수
 	String savedId="";
 	String savedPwd="";
@@ -26,7 +27,7 @@
 <head>
 <meta charset="UTF-8">
 <title>member/popup/popup_page.html</title>
-<link rel="stylesheet" href="../resource/css/bootstrap.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resource/css/bootstrap.css"/>
 <style>
 body{
 	margin-left:80px

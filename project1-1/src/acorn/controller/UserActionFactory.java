@@ -9,6 +9,9 @@ import acorn.member.action.MemberIndexAction;
 import acorn.member.action.MemberOverlabAction;
 import acorn.member.action.MemberSignUpAction;
 import acorn.member.action.MemberSignUpFormAction;
+import acorn.member.action.MemberSigninAction;
+import acorn.member.action.MemberSigninFormAction;
+
 import acorn.product.action.ItemListAction;
 import acorn.product.action.ItemRegistAction;
 import acorn.product.action.ItemRegistFormAction;
@@ -58,6 +61,10 @@ public class UserActionFactory {
 			action=new ItemRegistAction();
 		}else if(command.equals("/home")) {
 			action = new HomeAction();
+		}else if(command.equals("/member/signin")){
+			action = new MemberSigninAction();
+		}else if(command.equals("/signinform")){
+			action = new MemberSigninFormAction();
 		}
 		return action;
 	}
