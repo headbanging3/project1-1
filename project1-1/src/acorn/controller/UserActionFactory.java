@@ -2,6 +2,7 @@ package acorn.controller;
 
 import acorn.action.HomeAction;
 import acorn.manager.action.MlistAction;
+import acorn.manager.action.MupdateFormAction;
 import acorn.member.action.AgreeInfo;
 import acorn.member.action.MemberFindIdAction;
 import acorn.member.action.MemberFindIdAjaxAction;
@@ -63,7 +64,6 @@ public class UserActionFactory {
 			action=new ItemRegistAction();
 		}else if(command.equals("/home")) {
 			action = new HomeAction();
-
 		}else if(command.equals("/loginresult")){
 			action = new MemberSigninAction();
 		}else if(command.equals("/signinform")){
@@ -74,6 +74,8 @@ public class UserActionFactory {
 			action = new MemberSignoutAction();
 		}else if(command.equals("/member/info")){
 			action = new MemberInfoAction();
+		}else if(command.equals("/manager/private/updateform2")) {
+			action = new MupdateFormAction();
 		}
 		return action;
 	}
