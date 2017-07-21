@@ -17,16 +17,25 @@ CREATE SEQUENCE member_seq;
 --고객센터 리스트 sql (김재두)
 CREATE TABLE service
 (
-	mem_num NUMBER(20),
+	mem_num NUMBER(20) REFERENCES member(mem_num),
+	phone VARCHAR2(20),
+	email VARCHAR2(20),
 	title VARCHAR2(30),
-	s_content CLOB,
-    s_regdate DATE,
-	CONSTRAINT FK_p_s_num FOREIGN KEY (mem_num)
-    REFERENCES member(mem_num)
+	content CLOB,
+    regdate DATE,
+    type VARCHAR2(20),
+    state CHAR CHECK(state IN ('1' , '2'))  
 );
 
+
+SELECT * FROM SERVICE;
+SELECT * FROM member;
 DROP TABLE member;
 DROP TABLE service;
+
+UPDATE service 
+SET state=1
+WHERE rnum=13;
 
 
 

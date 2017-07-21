@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상품문의 등록</title>
+<script src="${pageContext.request.contextPath }/
+	SmartEditor/js/HuskyEZCreator.js"></script>
 <style>
 	.container{
 		margin: 0 auto;
@@ -31,13 +33,14 @@
 <div class="container">
 	<h3>상품문의</h3>
 	<div class="panel panel-default">
-		<form action="qnainsert.jsp" method="post">
+		<form action="qnainsert.do" method="post">
         <div class="panel-heading">
         	<input type="text" name="title" id="title" class="form-control" placeholder="제목"/>
         </div>
         <div class="panel-body">
            <label for="content">내용</label>
-            <input type="text" name="content" id="content" class="form-control"/>
+           <textarea name="content" id="content" cols="50" rows="10" class="form-control"></textarea>
+
         </div>
         <div class="panel-footer">
             <button type="submit" id="addQna" class="btn btn-default">작성</button>
@@ -55,7 +58,7 @@
 	
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
-		elPlaceHolder: "ir1",
+		elPlaceHolder: "content",
 		sSkinURI: "${pageContext.request.contextPath}/SmartEditor/SmartEditor2Skin.html",	
 		htParams : {
 			bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -75,16 +78,16 @@
 	
 	function pasteHTML() {
 		var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-		oEditors.getById["ir1"].exec("PASTE_HTML", [sHTML]);
+		oEditors.getById["content"].exec("PASTE_HTML", [sHTML]);
 	}
 	
 	function showHTML() {
-		var sHTML = oEditors.getById["ir1"].getIR();
+		var sHTML = oEditors.getById["content"].getIR();
 		alert(sHTML);
 	}
 		
 	function submitContents(elClickedObj) {
-		oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
+		oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
 		
 		// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("ir1").value를 이용해서 처리하면 됩니다.
 		
@@ -96,11 +99,11 @@
 	function setDefaultFont() {
 		var sDefaultFont = '궁서';
 		var nFontSize = 24;
-		oEditors.getById["ir1"].setDefaultFont(sDefaultFont, nFontSize);
+		oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
 	}
 		
 	$("#cansel").on("click",function(){
-		location.htef="qnalist.jsp";
+		location.htef="qnalist.do";
 	});
 </script>
 </body>

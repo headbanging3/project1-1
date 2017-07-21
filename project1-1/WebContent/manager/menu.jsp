@@ -70,7 +70,7 @@ String cPath=(String)request.getContextPath();
       <li class="sidebar-brand">
         <a href="<%=cPath %>/manager/index.jsp">Main</a>
       </li>
-      <li><a href="mlist.do">회원목록보기</a></li>
+      <li><a href="${pageContext.request.contextPath }/manager/mlist.do">회원목록보기</a></li>
       <li><a href="<%=cPath %>/productManagement/product_list.do">상품관리</a></li>
       <li><a href="#">메뉴 3</a></li>
       <li><a href="#">메뉴 4</a></li>
