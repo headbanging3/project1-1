@@ -106,7 +106,7 @@
  		}	
  		if(menu=='shop'){	
  			//alert(menu);
- 			location.href='<%=cPath %>/userpage/shop.do';
+ 			location.href='<%=cPath %>/userpage/shop/shop.do';
  		}	
  		
  	}

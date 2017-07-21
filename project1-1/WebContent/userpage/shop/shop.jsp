@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<jsp:include page="inc/header.jsp"></jsp:include>        
+<jsp:include page="../inc/header.jsp"></jsp:include>        
 <style>
 img{
 	margin-left:30px
@@ -29,12 +29,12 @@ img{
                                                 <c:forEach var="tmp" items="${itemList }">                                                	
 													<article class="grid_4 ${tmp.grid}">
                                                       <div class="${tmp.indent}" >
-                                                          <figure class="frame2 p2"><img src="../upload/${tmp.main_Img}" alt="" /></figure>
+                                                          <figure class="frame2 p2"><img src="../../upload/${tmp.main_Img}" alt="" /></figure>
                                                           <p class="color-4 prev-indent-bot">${tmp.pname}</p>
                                                           <p>${tmp.comments}</p>
                                                           <div class="wrapper">
                                                           	<span class="price fleft">${tmp.price}원</span>
-                                                              <a class="button fright" href="detail.jsp?pno=${tmp.pno}">Read More</a>
+                                                              <a class="button fright" href="detail.do?pno=${tmp.pno}">Read More</a>
                                                           </div>
                                                       </div>
 	                                                </article>
@@ -51,6 +51,6 @@ img{
             </div>	
         </div>
 	</section>
-	<jsp:include page="inc/footer.jsp"></jsp:include>
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
 </body>
 </html>
