@@ -1,5 +1,10 @@
+
 package acorn.controller;
 
+import acorn.action.HomeAction;
+import acorn.manager.action.MlistAction;
+import acorn.manager.action.MupdateAction;
+import acorn.manager.action.MupdateFormAction;
 import acorn.member.action.AgreeInfo;
 import acorn.member.action.MemberFindIdAction;
 import acorn.member.action.MemberFindIdAjaxAction;
@@ -8,14 +13,17 @@ import acorn.member.action.MemberIndexAction;
 import acorn.member.action.MemberOverlabAction;
 import acorn.member.action.MemberSignUpAction;
 import acorn.member.action.MemberSignUpFormAction;
+import acorn.member.action.MemberSigninAction;
+import acorn.member.action.MemberSigninFormAction;
 import acorn.product.action.ItemListAction;
 import acorn.product.action.ItemRegistAction;
 import acorn.product.action.ItemRegistFormAction;
 import acorn.service.action.QnaDetailAction;
 import acorn.service.action.QnaInsertAction;
 import acorn.service.action.QnaInsertformAction;
-//github.com/headbanging3/project1-1.git
+
 import acorn.service.action.ServiceQnalistAction;
+import acorn.userpage.action.ShopAction;
 
 public class UserActionFactory {
 	private static UserActionFactory factory;
@@ -57,11 +65,22 @@ public class UserActionFactory {
 			action=new ItemRegistFormAction();
 		}else if(command.equals("/productManagement/regist_confirm")){
 			action=new ItemRegistAction();
-		}else if(command.equals("/service/qnainsert_form")){
-			action=new QnaInsertformAction();
-		}else if(command.equals("/service/qnainsert")){
-			action=new QnaInsertAction();
+		}else if(command.equals("/userpage/shop")) {
+			action = new ShopAction();
+		}else if(command.equals("/home")) {
+			action = new HomeAction();
+		}else if(command.equals("/loginresult")){
+			action = new MemberSigninAction();
+		}else if(command.equals("/signinform")){
+			action = new MemberSigninFormAction();
+		}else if(command.equals("/manager/mlist")) {
+			action = new MlistAction();
+		}else if(command.equals("/manager/private/updateform2")) {
+			action = new MupdateFormAction();
+		}else if(command.equals("/manager/private/update")) {
+			action = new MupdateAction();
 		}
 		return action;
 	}
 }
+

@@ -17,7 +17,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="menu.jsp"/>
+<jsp:include page="../menu.jsp"/>
 <div class="container">
 
     <form class="well form-horizontal" action="update.jsp" method="post"  id="contact_form">
@@ -136,6 +136,6 @@
 </fieldset>
 </form>
 </div>
-    </div><!-- /.container -->
+<!-- /.container -->
 </body>
 </html>

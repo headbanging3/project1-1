@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="item">
+	<!-- <update id="update" parameterType="test.member.dto.MemberDto">
+		UPDATE member
+		SET name=#{name},addr=#{addr}
+		WHERE num=#{num}
+	</update>
+
+	<select id="getData" parameterType="int" 
+				resultType="test.member.dto.MemberDto">
+		SELECT num,name,addr
+		FROM member
+		WHERE num=#{num}
+	</select> -->
+
+	<select id="getList" resultType="acorn.product.dto.ItemDto">
+		SELECT *
+		FROM (SELECT result1.*,rownum
+   				FROM (SELECT pname,pno,comments,price,main_img,stock,regdate
+		            	FROM item
+		            	ORDER BY regdate DESC) result1
+		     )
+	</select>
+	<!-- <delete id="delete" parameterType="int">
+		DELETE FROM member WHERE num=#{num}
+	</delete> -->
+	<insert id="insert" parameterType="acorn.product.dto.ItemDto">
+		INSERT INTO item (pname,pno,comments,content,price,stock,main_Img,sub_Img1,sub_Img2,sub_Img3,sub_Img4,sub_Img5,sub_Img6,regdate)
+		VALUES(#{pname},#{pno},#{comments},#{content},#{price},#{stock},#{main_Img},#{sub_Img1,jdbcType=VARCHAR},#{sub_Img2,jdbcType=VARCHAR},#{sub_Img3,jdbcType=VARCHAR},#{sub_Img4,jdbcType=VARCHAR},#{sub_Img5,jdbcType=VARCHAR},#{sub_Img6,jdbcType=VARCHAR},SYSDATE)
+	</insert> 
+</mapper>
+
+
+
+
+
+
+
+

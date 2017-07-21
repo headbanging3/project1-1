@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import acorn.mybatis.SqlMapConfig;
 import acorn.product.dto.ItemDto;
 
-
 public class ItemDao {
 	private static ItemDao dao;
 	//MyBatis 를 사용하기 위한 핵심 객체

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manager">
+	<select id="getList" resultType="acorn.dto.MemberDto">
+		SELECT mem_num,id,pwd,name,phone,email,addr,regdate 
+		FROM member 
+		ORDER BY mem_num asc
+	</select>
+</mapper>
