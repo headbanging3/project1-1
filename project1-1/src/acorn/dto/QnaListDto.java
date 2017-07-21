@@ -8,10 +8,15 @@ public class QnaListDto {
 	private String qna_content;
 	private String qna_regdate;
 	
+	private int startRowNum; //시작 row번호
+	private int endRowNum; //끝 Row번호
+	private int prevNum; //이전글의 글번호
+	private int nextNum; //다음글의 글번호
+	
 	public QnaListDto(){}
 
 	public QnaListDto(int qna_listnum, String qna_title, int qna_pdnum, String qna_writer, String qna_content,
-			String qna_regdate) {
+			String qna_regdate, int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.qna_listnum = qna_listnum;
 		this.qna_title = qna_title;
@@ -19,6 +24,10 @@ public class QnaListDto {
 		this.qna_writer = qna_writer;
 		this.qna_content = qna_content;
 		this.qna_regdate = qna_regdate;
+		this.startRowNum = startRowNum;
+		this.endRowNum = endRowNum;
+		this.prevNum = prevNum;
+		this.nextNum = nextNum;
 	}
 
 	public int getQna_listnum() {
@@ -68,5 +77,38 @@ public class QnaListDto {
 	public void setQna_regdate(String qna_regdate) {
 		this.qna_regdate = qna_regdate;
 	}
+
+	public int getStartRowNum() {
+		return startRowNum;
+	}
+
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
+	}
+
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
+	}
+
+	public int getPrevNum() {
+		return prevNum;
+	}
+
+	public void setPrevNum(int prevNum) {
+		this.prevNum = prevNum;
+	}
+
+	public int getNextNum() {
+		return nextNum;
+	}
+
+	public void setNextNum(int nextNum) {
+		this.nextNum = nextNum;
+	}
+
 	
 }

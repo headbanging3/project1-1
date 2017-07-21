@@ -59,7 +59,7 @@
 	</tbody>
 </table>
 <ul>
-	<li><a href="<%=cPath %>/member/updateform.jsp">가입 정보 수정</a></li><br>
+	<li><a href="<%=cPath %>/member/updateform.do">가입 정보 수정</a></li><br>
 	<li><a href="javascript:memberConfirm()">회원 탈퇴</a></li><br>
 	<li><a href="<%=cPath %>">메인 페이지로 가기</a></li>
 </ul>
@@ -70,7 +70,7 @@
 	function memberConfirm(){
 		var isDelete=confirm("탈퇴 하시겠습니까?");
 		if(isDelete){
-			location.href="delete.jsp";
+			location.href="delete.do";
 		}
 	}
 </script>
