@@ -6,13 +6,7 @@
 <%@page import="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%
-
-	MemberDao dao = MemberDao.getInstance();
-
-	List<MemberDto> list = dao.getList();
-%>    
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,13 +15,17 @@
 <title>m_list.jsp</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
+<style>
+ .mg {
+ 	margin-left : 270px;
+ }
+</style>
 </head>
 <body>
 <h3></h3>
 <jsp:include page="menu.jsp"/>
   <!-- 본문 -->
-  <div id="page-content-wrapper">
+  <div id="page-content-wrapper" class="mg">
     <div class="container-fluid ">
      <table border="1" class="class="table table-striped table-bordered table-hover">
 		<thead>
@@ -46,27 +44,25 @@
 		</thead>
 		
 		<tbody>
-		<% for(MemberDto tmp : list) { %>
-			<tr class="success">
-				<td><%=tmp.getMem_num() %></td>
-				<td><%=tmp.getId() %></td>
-				<td><%=tmp.getPwd() %></td>
-				<td><%=tmp.getName() %></td>
-				<td><%=tmp.getPhone() %></td>
-				<td><%=tmp.getEmail() %></td>
-				<td><%=tmp.getAddr() %></td>
-				<td><%=tmp.getRegdate() %></td>
-				<td><a href="updateform2.jsp?num=<%=tmp.getMem_num()%>">수정</a></td>
-				<td><a href="delete.jsp?num=<%=tmp.getMem_num()%>">삭제</a></td>
-			</tr>
-		<%} %>
+		<c:forEach var="tmp" items="${list }">
+			<tr>
+				<td>${tmp.mem_num }</td>
+				<td>${tmp.id }</td>
+				<td>${tmp.pwd }</td>
+				<td>${tmp.name }</td>
+				<td>${tmp.phone }</td>
+				<td>${tmp.email }</td>
+				<td>${tmp.addr }</td>
+				<td>${tmp.regdate }</td>
+				<td><a href="private/updateform2.do?num=${tmp.mem_num }">수정</a></td>
+				<td><a href="delete.jsp?num=${tmp.mem_num }">삭제</a></td>
+			</tr>		
+		</c:forEach>
 		</tbody>
 		</table>
     </div>
   </div>
   <!-- /본문 -->
-<script>
- 
-</script>	
+	
 </body>
 </html>

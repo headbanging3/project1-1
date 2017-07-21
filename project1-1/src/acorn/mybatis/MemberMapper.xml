@@ -14,4 +14,9 @@
 	<select id="memberOverlab" parameterType="String" resultType="String">
 		SELECT id FROM member WHERE id=#{id}
 	</select>
+	<select id="isValid" parameterType="acorn.dto.MemberDto" resultType="acorn.dto.MemberDto">
+		SELECT id,pwd 
+		FROM member
+		WHERE id=#{id} AND pwd=#{pwd}
+	</select>
 </mapper>

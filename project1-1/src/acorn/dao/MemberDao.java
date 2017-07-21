@@ -389,73 +389,32 @@ public class MemberDao {
 	//////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////////////
 	// 아이디 비밀번호가 유효한지 여부를 리턴
 	public boolean isValid(MemberDto dto) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		// 아이디와 비밀번호가 맞는 정보인지 여부
-		boolean isValid = false;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "SELECT * FROM member WHERE id=? and pwd=?";
-			pstmt = conn.prepareStatement(sql);
-			// ?에 아이디와 비밀번호를 바인딩하고
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getPwd());
-			// select 해서
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				isValid = true;
-			}
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
+		SqlSession session=factory.openSession();
+		MemberDto resultDto=null;
+		try{
+			resultDto=session.selectOne("acorn.isValid",dto);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
 		}
-		return isValid;
+		if(resultDto == null){
+			return false;
+		}else{
+			return true;
+		}
 	} // isValid
 
 	// 회원 가입된 정보를 리턴해주는 메소드
 	public MemberDto getData(String id) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		MemberDto dto = null;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "SELECT pwd,name,phone,email,addr,regdate FROM member WHERE id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				dto = new MemberDto();
-				dto.setId(id);
-				dto.setPwd(rs.getString("pwd"));
-				dto.setName(rs.getString("name"));
-				dto.setPhone(rs.getString("phone"));
-				dto.setEmail(rs.getString("email"));
-				dto.setAddr(rs.getString("addr"));
-				dto.setRegdate(rs.getString("regdate"));
-			}
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
+		SqlSession session=factory.openSession();
+		MemberDto dto=null;
+		try{
+			dto=session.selectOne("acorn.getData",id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
 		}
 		return dto;
 	}
