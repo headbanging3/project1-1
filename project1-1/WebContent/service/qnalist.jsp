@@ -26,6 +26,9 @@
 	tr{
 		text-align:center;
 	}
+	.active{
+		font-weight: bold;
+	}
 </style>
 </head>
 <body>
@@ -69,37 +72,38 @@
             </tbody>
         </table>
         <div class="panel-footer">
-         	<div class="page_display">
-				<c:choose>
-					<c:when test="${startPageNum ne 1 }">
-						<a href="list.do?pageNum=${startPageNum-1 }">[ 이전 ]</a>
-					</c:when>
-					<c:otherwise>
-						<a class="muted" href="javascript:">[ 이전 ]</a>
-					</c:otherwise>
-				</c:choose>
-			
-				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+         	<!-- 페이징 처리에 관련된 UI -->
+			<div class="page_display">
+				<ul class="pagination">
 					<c:choose>
-						<c:when test="${i eq pageNum }">
-							<a  class="active" href="list.do?pageNum=${i }">${i }</a>
+						<c:when test="${startPageNum ne 1 }">
+							<li><a href="qnalist.do?pageNum=${startPageNum-1 }">&laquo;</a></li>
 						</c:when>
 						<c:otherwise>
-							<a href="list.do?pageNum=${i }">${i }</a>
+							<li class="disabled"><a class="muted" href="javascript:">&laquo;</a></li>
 						</c:otherwise>
 					</c:choose>
-				</c:forEach>
-				
-				<c:choose>
-					<c:when test="${endPageNum lt totalPageCount }">
-						<a href="list.do?pageNum=${endPageNum+1 }">[ 다음 ]</a>
-					</c:when>
-					<c:otherwise>
-						<a class="muted" href="javascript:">[ 다음 ]</a>
-					</c:otherwise>
-				</c:choose>
+					<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+						<c:choose>
+							<c:when test="${i eq pageNum }">
+								<li><a  class="active" href="qnalist.do?pageNum=${i }">${i }</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="qnalist.do?pageNum=${i }">${i }</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:choose>
+						<c:when test="${endPageNum lt totalPageCount }">
+							<li><a href="qnalist.do?pageNum=${endPageNum+1 }">&raquo;</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="disabled"><a class="muted" href="javascript:">&raquo;</a></li>
+						</c:otherwise>
+					</c:choose>
+				</ul>
+				   <a href="qnainsert_form.do" id="addQna">글작성</a>	
 			</div>
-            <a href="qnainsert_form.jsp" id="addQna">글작성</a>
         </div>
     </div>
 </div>

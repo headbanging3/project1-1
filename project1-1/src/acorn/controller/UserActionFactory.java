@@ -12,6 +12,8 @@ import acorn.product.action.ItemListAction;
 import acorn.product.action.ItemRegistAction;
 import acorn.product.action.ItemRegistFormAction;
 import acorn.service.action.QnaDetailAction;
+import acorn.service.action.QnaInsertAction;
+import acorn.service.action.QnaInsertformAction;
 //github.com/headbanging3/project1-1.git
 import acorn.service.action.ServiceQnalistAction;
 
@@ -55,6 +57,10 @@ public class UserActionFactory {
 			action=new ItemRegistFormAction();
 		}else if(command.equals("/productManagement/regist_confirm")){
 			action=new ItemRegistAction();
+		}else if(command.equals("/service/qnainsert_form")){
+			action=new QnaInsertformAction();
+		}else if(command.equals("/service/qnainsert")){
+			action=new QnaInsertAction();
 		}
 		return action;
 	}
