@@ -32,7 +32,7 @@ public class MemberSigninAction extends Action{
 			request.setAttribute("url", location);
 		}
 		
-		return new ActionForward("/views/home.jsp");
+		return new ActionForward("/popup/loginresult.jsp");
 	}
 
 }
