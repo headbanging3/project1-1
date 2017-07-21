@@ -7,10 +7,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+ .mg {
+ 	margin-left : 270px;
+ }
+</style>
 </head>
 <body>
 <jsp:include page="../menu.jsp"/>
-
+<div class="mg">
 <h3>등록상품 목록입니다.</h3>
 <table>
 	<thead>
@@ -37,7 +42,7 @@
 	</tbody>
 </table>
  	
-
 <a href="regist_form.do">상품등록</a>
+</div>
 </body>
 </html>

@@ -5,14 +5,14 @@
 		UPDATE member
 		SET name=#{name},addr=#{addr}
 		WHERE num=#{num}
-	</update>
+	</update>-->
 
-	<select id="getData" parameterType="int" 
-				resultType="test.member.dto.MemberDto">
-		SELECT num,name,addr
-		FROM member
-		WHERE num=#{num}
-	</select> -->
+	<select id="detail" parameterType="int" 
+				resultType="acorn.product.dto.ItemDto">
+		SELECT *
+		FROM item
+		WHERE pno=#{pno}
+	</select> 
 
 	<select id="getList" resultType="acorn.product.dto.ItemDto">
 		SELECT *

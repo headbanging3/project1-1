@@ -49,8 +49,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
       	<%if(id != null) {%>
-      	  <li><a href="<%=cPath %>/member/info.jsp"><%=id %> 님</a></li>
-      	  <li><a href="<%=cPath %>/popup/logout.jsp"> 로그아웃 </a></li>
+      	  <li><a href="<%=cPath %>/member/info.do"><%=id %> 님</a></li>
+      	  <li><a href="<%=cPath %>/popup/logout.do"> 로그아웃 </a></li>
       	<%} else { %>
 	      <li><a href="javascript:showPopup()">회원가입/로그인</a></li>
 	    <%} %>
@@ -64,7 +64,7 @@
 	            <li><a href="#">주문 취소 및 교환</a></li>
 	            <li><a href="#">반품</a></li>
 	            <li class="divider"></li>
-	            <li><a href="<%=cPath %>/service/service.jsp">문의하러 가기</a></li>
+	            <li><a href="<%=cPath%>/service/serviceinsertform.do">문의하러 가기</a></li>
         	  </ul>
      	   </li>
      	 </ul>
@@ -92,7 +92,7 @@
 
  	//팝업 띄우는 함수 
 	function showPopup(){
-		window.open("signinform.do","팝업창","width=400,height=300,top=200,left=700");
+		window.open("${pageContext.request.contextPath }/popup/signinform.do","팝업창","width=400,height=300,top=200,left=700");
 	}
  	
  	// 팝업을 닫는 함수
@@ -106,7 +106,7 @@
  		}	
  		if(menu=='shop'){	
  			//alert(menu);
- 			location.href='<%=cPath %>/userpage/shop.do';
+ 			location.href='<%=cPath %>/userpage/shop/shop.do';
  		}	
  		
  	}

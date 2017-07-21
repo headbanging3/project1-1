@@ -337,179 +337,64 @@ public class MemberDao {
 		return dto;
 	}
 
-	// 회원정보를 수정하는 메소드
-	public boolean update(MemberDto dto) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int flag = 0;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "update member set pwd=?,phone=?,email=?,addr=? where id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getPwd());
-			pstmt.setString(2, dto.getPhone());
-			pstmt.setString(3, dto.getEmail());
-			pstmt.setString(4, dto.getAddr());
-			pstmt.setString(5, dto.getId());
-			pstmt.executeQuery();
-
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-			if (flag > 0) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-	}
-
-	public boolean delete(String id) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int flag = 0;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "delete from member where id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.executeQuery();
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
-		if (flag > 0) {
-			return true;
-		} else {
-			return false;
+	public void delete(String id) {
+		SqlSession session=factory.openSession(true);
+		try{
+			session.delete("acorn.delete",id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
 		}
 	}// delete
+	
+	//회원 정보 수정 반영하는 메소드
+	public void update(MemberDto dto){
+		SqlSession session=factory.openSession(true);
+		try{
+			session.update("acorn.update",dto);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//////////////////////////////////////////////// 재두
 	//////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////////////
 
+	//자세한 상담내역보기
+	public ServiceDto serDetail(ServiceDto dto){
+		SqlSession session=factory.openSession();
+		ServiceDto resultDto=session.selectOne("service.getDetail", dto);
+		session.close();
+		return resultDto;
+	}
+	
 	// 나의 문의 내역 데이터 가져오기
-	public List<ServiceDto> mysergetList(int mem_num) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<ServiceDto> list = new ArrayList<>();
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "SELECT title, s_content, TO_CHAR(regdate,'YYYY.MM.DD AM HH24:MI') regdate FROM service INNER JOIN member ON member.mem_num = service.mem_num WHERE member.mem_num= ? ORDER BY regdate";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, mem_num);
-			// sql 문 수행하고 결과셋 받아오기
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				String title = rs.getString("title");
-				String s_content = rs.getString("s_content");
-				String regdate = rs.getString("regdate");
-				ServiceDto dto = new ServiceDto();
-				dto.setTitle(title);
-				dto.setS_content(s_content);
-				dto.setRegdate(regdate);
-				list.add(dto);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(mem_num);
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
-		// 글목록을 리턴해준다
+	public List<ServiceDto> sergetList(int mem_num) {
+		SqlSession session=factory.openSession();
+		List<ServiceDto> list=session.selectList("service.getList", mem_num);
 		return list;
 	}// getList()
 
 	// 고객센터 페이지 문의하러 가기에서
 	// 폼에 회원 정보가져오는 service getdata (재두)
 	public MemberDto sergetData(String id) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		MemberDto dto = null;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "SELECT mem_num,name,email FROM member" + " WHERE id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				dto = new MemberDto();
-				dto.setMem_num(Integer.parseInt(rs.getString("mem_num")));
-				dto.setName(rs.getString("name"));
-				dto.setEmail(rs.getString("email"));
-			}
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
+		SqlSession session=factory.openSession();
+		MemberDto dto=session.selectOne("service.getData",id);
+		session.close();
 		return dto;
 	}
 
 	// 고객센터 페이지 문의하러 가기에서
 	// service insert(재두)
-	public boolean serinsert(int mem_num, String s_content, String title) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int flag = 0;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "INSERT INTO service(mem_num,s_content,title,s_regdate) " + "VALUES(?,?,?,SYSDATE)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, mem_num);
-			pstmt.setString(2, s_content);
-			pstmt.setString(3, title);
-			flag = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
-		if (flag > 0) {
-			return true;
-		} else {
-			return false;
-		}
+	public void serinsert(ServiceDto dto) {
+		SqlSession session=factory.openSession(true);
+		session.insert("service.insert", dto);
+		session.close();
 	}// inert();
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

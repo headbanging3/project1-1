@@ -27,7 +27,7 @@
 			Cookie cookie=new Cookie("savedID",id);
 			
 			//최대 유지시간 초단위로 설정
-			cookie.setMaxAge(60*30);
+			cookie.setMaxAge(60*60);
 			//쿠키 응답 하기 
 			response.addCookie(cookie);
 		}
@@ -59,7 +59,7 @@
 	
 	<script>
 		alert("아이디 비밀번호를 확인해 주세요");
-		location.href="<%=cPath %>/popup/popup_page.jsp";
+		location.href="${pageContext.request.contextPath }/popup/popup_page.jsp";
 	</script>
 <% } %>
 

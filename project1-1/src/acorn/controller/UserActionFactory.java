@@ -6,15 +6,20 @@ import acorn.manager.action.MlistAction;
 import acorn.manager.action.MupdateAction;
 import acorn.manager.action.MupdateFormAction;
 import acorn.member.action.AgreeInfo;
+import acorn.member.action.MemberDeleteAction;
 import acorn.member.action.MemberFindIdAction;
 import acorn.member.action.MemberFindIdAjaxAction;
 import acorn.member.action.MemberFindPwdAjaxAction;
 import acorn.member.action.MemberIndexAction;
+import acorn.member.action.MemberInfoAction;
 import acorn.member.action.MemberOverlabAction;
 import acorn.member.action.MemberSignUpAction;
 import acorn.member.action.MemberSignUpFormAction;
 import acorn.member.action.MemberSigninAction;
 import acorn.member.action.MemberSigninFormAction;
+import acorn.member.action.MemberSignoutAction;
+import acorn.member.action.MemberUpdateAction;
+import acorn.member.action.MemberUpdateFormAction;
 import acorn.product.action.ItemListAction;
 import acorn.product.action.ItemRegistAction;
 import acorn.product.action.ItemRegistFormAction;
@@ -22,8 +27,13 @@ import acorn.service.action.QnaDeleteAction;
 import acorn.service.action.QnaDetailAction;
 import acorn.service.action.QnaInsertAction;
 import acorn.service.action.QnaInsertformAction;
+import acorn.service.action.ServiceDetailAction;
+import acorn.service.action.ServiceInsertAction;
+import acorn.service.action.ServiceInsertFormAction;
+import acorn.service.action.ServiceListAction;
 import acorn.service.action.ServiceQnalistAction;
-import acorn.userpage.action.ShopAction;
+import acorn.userpage.shop.action.ShopAction;
+import acorn.userpage.shop.action.ShopDetailAction;
 
 public class UserActionFactory {
 	private static UserActionFactory factory;
@@ -65,18 +75,31 @@ public class UserActionFactory {
 			action=new ItemRegistFormAction();
 		}else if(command.equals("/productManagement/regist_confirm")){
 			action=new ItemRegistAction();
-		}else if(command.equals("/userpage/shop")) {
+		}else if(command.equals("/userpage/shop/shop")) {
 			action = new ShopAction();
-		}else if(command.equals("/home")) {
+		}else if(command.equals("/userpage/shop/detail")) {
+			action = new ShopDetailAction();
+		}
+		else if(command.equals("/home")) {
 			action = new HomeAction();
-		}else if(command.equals("/loginresult")){
+		}else if(command.equals("/popup/loginresult")){
 			action = new MemberSigninAction();
-		}else if(command.equals("/signinform")){
+		}else if(command.equals("/popup/signinform")){
 			action = new MemberSigninFormAction();
 		}else if(command.equals("/manager/mlist")) {
 			action = new MlistAction();
+		}else if(command.equals("/popup/logout")){
+			action = new MemberSignoutAction();
+		}else if(command.equals("/member/info")){
+			action = new MemberInfoAction();
 		}else if(command.equals("/manager/private/updateform2")) {
 			action = new MupdateFormAction();
+		}else if(command.equals("/member/delete")){
+			action = new MemberDeleteAction();
+		}else if(command.equals("/member/updateform")){
+			action = new MemberUpdateFormAction();
+		}else if(command.equals("/member/update")){
+			action = new MemberUpdateAction();
 		}else if(command.equals("/manager/private/update")) {
 			action = new MupdateAction();
 		}else if(command.equals("/service/qnainsert_form")){
@@ -85,8 +108,15 @@ public class UserActionFactory {
 			action=new QnaInsertAction();
 		}else if(command.equals("/service/qnadelete")){
 			action=new QnaDeleteAction();
+		}else if(command.equals("/service/serviceinsertform")){
+			action=new ServiceInsertFormAction();
+		}else if(command.equals("/service/serviceinsert")){
+			action=new ServiceInsertAction();
+		}else if(command.equals("/service/servicelist")){
+			action=new ServiceListAction();
+		}else if(command.equals("/service/servicedetail")){
+			action=new ServiceDetailAction();
 		}
 		return action;
 	}
 }
-
