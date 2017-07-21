@@ -49,8 +49,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
       	<%if(id != null) {%>
-      	  <li><a href="<%=cPath %>/member/info.jsp"><%=id %> 님</a></li>
-      	  <li><a href="<%=cPath %>/popup/logout.jsp"> 로그아웃 </a></li>
+      	  <li><a href="<%=cPath %>/member/info.do"><%=id %> 님</a></li>
+      	  <li><a href="<%=cPath %>/popup/logout.do"> 로그아웃 </a></li>
       	<%} else { %>
 	      <li><a href="javascript:showPopup()">회원가입/로그인</a></li>
 	    <%} %>

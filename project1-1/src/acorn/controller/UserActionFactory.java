@@ -7,12 +7,13 @@ import acorn.member.action.MemberFindIdAction;
 import acorn.member.action.MemberFindIdAjaxAction;
 import acorn.member.action.MemberFindPwdAjaxAction;
 import acorn.member.action.MemberIndexAction;
+import acorn.member.action.MemberInfoAction;
 import acorn.member.action.MemberOverlabAction;
 import acorn.member.action.MemberSignUpAction;
 import acorn.member.action.MemberSignUpFormAction;
 import acorn.member.action.MemberSigninAction;
 import acorn.member.action.MemberSigninFormAction;
-
+import acorn.member.action.MemberSignoutAction;
 import acorn.product.action.ItemListAction;
 import acorn.product.action.ItemRegistAction;
 import acorn.product.action.ItemRegistFormAction;
@@ -69,6 +70,10 @@ public class UserActionFactory {
 			action = new MemberSigninFormAction();
 		}else if(command.equals("/manager/mlist")) {
 			action = new MlistAction();
+		}else if(command.equals("/popup/logout")){
+			action = new MemberSignoutAction();
+		}else if(command.equals("/member/info")){
+			action = new MemberInfoAction();
 		}
 		return action;
 	}

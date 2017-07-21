@@ -419,40 +419,6 @@ public class MemberDao {
 		return dto;
 	}
 
-	// 회원정보를 수정하는 메소드
-	public boolean update(MemberDto dto) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int flag = 0;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "update member set pwd=?,phone=?,email=?,addr=? where id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getPwd());
-			pstmt.setString(2, dto.getPhone());
-			pstmt.setString(3, dto.getEmail());
-			pstmt.setString(4, dto.getAddr());
-			pstmt.setString(5, dto.getId());
-			pstmt.executeQuery();
-
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-			if (flag > 0) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-	}
-
 	public boolean delete(String id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

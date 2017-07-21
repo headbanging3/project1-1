@@ -19,4 +19,10 @@
 		FROM member
 		WHERE id=#{id} AND pwd=#{pwd}
 	</select>
+	<select id="getData" parameterType="String" resultType="acorn.dto.MemberDto">
+		SELECT id,pwd,email,phone,addr,regdate
+		FROM member
+		WHERE id=#{id}
+		
+	</select>
 </mapper>
