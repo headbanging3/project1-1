@@ -2,6 +2,7 @@ package acorn.controller;
 
 import acorn.action.HomeAction;
 import acorn.manager.action.MlistAction;
+import acorn.manager.action.MupdateAction;
 import acorn.manager.action.MupdateFormAction;
 import acorn.member.action.AgreeInfo;
 import acorn.member.action.MemberFindIdAction;
@@ -71,6 +72,8 @@ public class UserActionFactory {
 			action = new MlistAction();
 		}else if(command.equals("/manager/private/updateform2")) {
 			action = new MupdateFormAction();
+		}else if(command.equals("/manager/private/update")) {
+			action = new MupdateAction();
 		}
 		return action;
 	}
