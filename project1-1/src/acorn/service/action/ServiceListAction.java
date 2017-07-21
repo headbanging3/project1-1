@@ -20,6 +20,7 @@ public class ServiceListAction extends Action{
 		int mem_num=dto.getMem_num();
 		List<ServiceDto> list=MemberDao.getInstance().sergetList(mem_num);
 		request.setAttribute("list", list);
+		request.setAttribute("id", id);
 		return new ActionForward("/service/servicelist.jsp");
 	}
 
