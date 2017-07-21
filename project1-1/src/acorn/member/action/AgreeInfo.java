@@ -9,7 +9,7 @@ import acorn.controller.ActionForward;
 public class AgreeInfo extends Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("dd");
+		System.out.println("어그리인포");
 		return new ActionForward("/member/agree_info.jsp");
 	}
 }
