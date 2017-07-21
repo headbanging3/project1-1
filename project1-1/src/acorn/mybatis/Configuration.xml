@@ -23,4 +23,5 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="acorn/mybatis/ServiceMapper.xml"/>
 		<mapper resource="acorn/mybatis/ProductMapper.xml"/>
 	</mappers>
+
 </configuration>
