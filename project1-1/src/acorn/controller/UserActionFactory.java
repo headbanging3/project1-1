@@ -1,6 +1,7 @@
 package acorn.controller;
 
 import acorn.action.HomeAction;
+import acorn.manager.action.MlistAction;
 import acorn.member.action.AgreeInfo;
 import acorn.member.action.MemberFindIdAction;
 import acorn.member.action.MemberFindIdAjaxAction;
@@ -58,6 +59,8 @@ public class UserActionFactory {
 			action=new ItemRegistAction();
 		}else if(command.equals("/home")) {
 			action = new HomeAction();
+		}else if(command.equals("/manager/mlist")) {
+			action = new MlistAction();
 		}
 		return action;
 	}
