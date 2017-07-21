@@ -65,8 +65,7 @@ public class UserActionFactory {
 			action=new ItemRegistAction();
 		}else if(command.equals("/userpage/shop")) {
 			action = new ShopAction();
-		}
-		else if(command.equals("/home")) {
+		}else if(command.equals("/home")) {
 			action = new HomeAction();
 		}else if(command.equals("/loginresult")){
 			action = new MemberSigninAction();
@@ -74,9 +73,9 @@ public class UserActionFactory {
 			action = new MemberSigninFormAction();
 		}else if(command.equals("/manager/mlist")) {
 			action = new MlistAction();
-		}else if(command.equals("/manager/private/updateform2")) {
+		}else if(command.equals("/manager/updateform2")) {
 			action = new MupdateFormAction();
-		}else if(command.equals("/manager/private/update")) {
+		}else if(command.equals("/manager/update")) {
 			action = new MupdateAction();
 		}
 		return action;

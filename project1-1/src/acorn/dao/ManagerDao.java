@@ -33,4 +33,16 @@ public class ManagerDao {
 		}
 		return list;
 	}
+	
+	public void update1(MemberDto dto) {
+		SqlSession session = factory.openSession(true);
+		try {
+			session.update("manager.update1", dto);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+	
 }
