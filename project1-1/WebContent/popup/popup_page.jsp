@@ -36,7 +36,7 @@ body{
 </head>
 <body>
 <h3>로그인 페이지</h3>
-<form action="loginresult.jsp" method="post">
+<form action="loginresult.do" method="post">
 	<div class="form-group">
 	<label for="id">아이디 &nbsp  &nbsp </label>
 	<input type="text" name="id" id="id" value="<%=savedId %>"/><br />

@@ -63,7 +63,7 @@ public class UserActionFactory {
 			action=new ItemRegistAction();
 		}else if(command.equals("/home")) {
 			action = new HomeAction();
-		}else if(command.equals("/member/signin")){
+		}else if(command.equals("/loginresult")){
 			action = new MemberSigninAction();
 		}else if(command.equals("/signinform")){
 			action = new MemberSigninFormAction();
