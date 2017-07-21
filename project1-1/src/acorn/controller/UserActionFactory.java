@@ -17,12 +17,9 @@ import acorn.member.action.MemberSignUpAction;
 import acorn.member.action.MemberSignUpFormAction;
 import acorn.member.action.MemberSigninAction;
 import acorn.member.action.MemberSigninFormAction;
-<<<<<<< HEAD
 import acorn.member.action.MemberSignoutAction;
 import acorn.member.action.MemberUpdateAction;
 import acorn.member.action.MemberUpdateFormAction;
-=======
->>>>>>> branch 'master' of https://github.com/headbanging3/project1-1.git
 import acorn.product.action.ItemListAction;
 import acorn.product.action.ItemRegistAction;
 import acorn.product.action.ItemRegistFormAction;
