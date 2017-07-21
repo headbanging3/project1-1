@@ -245,39 +245,83 @@ public class MemberDao {
 	// 회원가입 dao(웅환)
 	public void memberInsert(MemberDto dto){
 		SqlSession session=factory.openSession(true);
-		session.insert("acorn.memberInsert",dto);
-		session.close();
+		try{
+			session.insert("acorn.memberInsert",dto);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
 	}
 
 	// 아이디 찾기 dao(웅환)
 	public String findId(MemberDto dto){
 		SqlSession session=factory.openSession();
-		String id=session.selectOne("acorn.memberFindId",dto);
-		session.close();
+		String id="";
+		try{
+			id=session.selectOne("acorn.memberFindId",dto);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
 		return id;
 	}
 
 	// 비밀번호 찾기 dao(웅환)
 	public String findPwd(MemberDto dto){
 		SqlSession session=factory.openSession();
-		String pwd=session.selectOne("acorn.memberFindPwd",dto);
-		session.close();
+		String pwd="";
+		try{
+			session.selectOne("acorn.memberFindPwd",dto);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
 		return pwd;
 	}
 
 	// 아이디 중복값을 DB와 비교하기 위한 dao(웅환)
 	public String isOverlab(String id) {
 		SqlSession session=factory.openSession();
-		String id2=session.selectOne("acorn.memberOverlab",id);
-		session.close();
+		String id2="";
+		try{
+			session.selectOne("acorn.memberOverlab",id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
 		return id2;
 	}// overlab();
 
 	// 상품문의 리스트를 출력해주는 메소드
-	public List<QnaListDto> getQnaList(){
+	public List<QnaListDto> getQnaList(QnaListDto dto){
 		SqlSession session=factory.openSession();
-		List<QnaListDto> list=session.selectList("service.getQnaList");
+		List<QnaListDto> list=null;
+		try{
+			list=session.selectList("service.getQnaList",dto);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
 		return list;
+	}
+	
+	//전체 row 갯수를 리턴해주는 메소드
+	public int getCount(){
+		SqlSession session=factory.openSession();
+		int count=0;
+		try{
+			count=session.selectOne("service.getCount");
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return count;
 	}
 
 	public QnaListDto qnaDetail(int listnum) {
@@ -315,36 +359,22 @@ public class MemberDao {
 		}
 		return dto;
 	}
+	
 
 	// 상품문의글 등록 메서드
 	public boolean qnaInsert(QnaListDto dto) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int flag = 0;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "INSERT INTO qnalist(qna_listnum, qna_title, qna_pdnum, "
-					+ "qna_writer, qna_content, qna_regdate) " + "VALUES(qnalist_seq.NEXTVAL, ?, ?, ?, ? ,SYSDATE)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getQna_title());
-			pstmt.setInt(2, dto.getQna_pdnum());
-			pstmt.setString(3, dto.getQna_writer());
-			pstmt.setString(4, dto.getQna_content());
-			flag = pstmt.executeUpdate();
-		} catch (Exception e) {
+		SqlSession session=factory.openSession(true);
+		int isSuccess=0;
+		try{
+			isSuccess=session.insert("service.insertQna",dto);
+		}catch(Exception e){
 			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
+		}finally{
+			session.close();
 		}
-		if (flag > 0) {
+		if(isSuccess>0){
 			return true;
-		} else {
+		}else{
 			return false;
 		}
 	}// qnaInsert();
@@ -389,73 +419,32 @@ public class MemberDao {
 	//////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////////////
 	// 아이디 비밀번호가 유효한지 여부를 리턴
 	public boolean isValid(MemberDto dto) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		// 아이디와 비밀번호가 맞는 정보인지 여부
-		boolean isValid = false;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "SELECT * FROM member WHERE id=? and pwd=?";
-			pstmt = conn.prepareStatement(sql);
-			// ?에 아이디와 비밀번호를 바인딩하고
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getPwd());
-			// select 해서
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				isValid = true;
-			}
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
+		SqlSession session=factory.openSession();
+		MemberDto resultDto=null;
+		try{
+			resultDto=session.selectOne("acorn.isValid",dto);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
 		}
-		return isValid;
+		if(resultDto == null){
+			return false;
+		}else{
+			return true;
+		}
 	} // isValid
 
 	// 회원 가입된 정보를 리턴해주는 메소드
 	public MemberDto getData(String id) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		MemberDto dto = null;
-		try {
-			conn = new DbcpBean().getConn();
-			String sql = "SELECT pwd,name,phone,email,addr,regdate FROM member WHERE id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				dto = new MemberDto();
-				dto.setId(id);
-				dto.setPwd(rs.getString("pwd"));
-				dto.setName(rs.getString("name"));
-				dto.setPhone(rs.getString("phone"));
-				dto.setEmail(rs.getString("email"));
-				dto.setAddr(rs.getString("addr"));
-				dto.setRegdate(rs.getString("regdate"));
-			}
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
+		SqlSession session=factory.openSession();
+		MemberDto dto=null;
+		try{
+			dto=session.selectOne("acorn.getData",id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
 		}
 		return dto;
 	}

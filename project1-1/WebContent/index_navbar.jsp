@@ -92,7 +92,7 @@
 
  	//팝업 띄우는 함수 
 	function showPopup(){
-		window.open("<%=cPath %>/popup/popup_page.jsp","팝업창","width=400,height=300,top=200,left=700");
+		window.open("signinform.do","팝업창","width=400,height=300,top=200,left=700");
 	}
  	
  	// 팝업을 닫는 함수
@@ -106,7 +106,7 @@
  		}	
  		if(menu=='shop'){	
  			//alert(menu);
- 			location.href='<%=cPath %>/userpage/shop.jsp';
+ 			location.href='<%=cPath %>/userpage/shop.do';
  		}	
  		
  	}
