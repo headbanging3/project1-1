@@ -21,7 +21,7 @@
 	<div class="row">
 		<div class="col-sm-6 col-sm-offset-3">
 			<h3>회원정보 수정 페이지 입니다.</h3>
-			<form action="update.jsp" method="post" id="updateForm">
+	<form action="update.do" method="post" id="updateForm">
 	
 			<input type="hidden" name="id" class="form-control" value="<%=id %>" />
 		
@@ -41,13 +41,13 @@
 			<div class="form-gorup">
 			<label for="pwd" >비밀번호</label>
 			<input type="password" id="pwd"  
-			value="<%=dto.getPwd() %>" class="form-control" />
+			value="<%=dto.getPwd() %>" class="form-control" name="pwd" />
 			</div>
 			<br />
 			
 			<div class="form-gorup">
 			<label for="pwd2">비밀번호 확인</label>
-			<input type="password" name="pwd" id="pwd2" 
+			<input type="password" name="" id="pwd2" 
 			value="<%=dto.getPwd() %>" class="form-control"/> 
 			</div>
 			<br />
@@ -78,11 +78,11 @@
 			
 			<button type="submit" class="btn btn-primary">수정 확인</button>
 			
-		</div>
-	</div>
 	
-</form>
-		
+	
+			</form>
+			</div>
+	</div>
 
 
 <script>

@@ -1,16 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="service">
-	<select id="getQnaList" resultType="acorn.dto.QnaListDto">
-		<!-- SELECT *
+	<select id="getQnaList" parameterType="acorn.dto.QnaListDto" resultType="acorn.dto.QnaListDto">
+		SELECT *
 		FROM	(SELECT result1.*, ROWNUM rnum
 				FROM (SELECT qna_listnum, qna_title, qna_pdnum, qna_writer, qna_content, 
 						TO_CHAR(qna_regdate,'YYYY.MM.DD') AS qna_regdate 
-						FROM qnalist ORDER BY qna_listnum DESC) result1)
-		WHERE qna_listnum BETWEEN #{startRowNum} AND #{endRowNum} -->
-		SELECT qna_listnum, qna_title, qna_pdnum, qna_writer, qna_content, 
-			TO_CHAR(qna_regdate,'YYYY.MM.DD') AS qna_regdate 
-		FROM qnalist ORDER BY qna_listnum DESC
-	
+						FROM qnalist 
+						ORDER BY qna_listnum DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum} 
 	</select>
+	<insert id="insert" parameterType="acorn.dto.ServiceDto">
+		INSERT INTO service(mem_num,phone,email,title,content,regdate,type)
+		VALUES(#{mem_num},#{phone},#{email},#{title},#{content},SYSDATE,#{type})
+	</insert>
+	
+	<select id="getData" parameterType="string" resultType="acorn.dto.MemberDto">
+		SELECT mem_num,phone,email 
+		FROM member
+		WHERE id=#{id}
+	</select>
+	
+	<select id="getList" parameterType="int" resultType="acorn.dto.ServiceDto">
+		SELECT ROWNUM rnum, title, content, TO_CHAR(regdate,'YYYY.MM.DD AM HH24:MI') regdate,type,state
+		FROM service 
+		WHERE mem_num=#{mem_num}
+		ORDER BY regdate asc
+	</select>
+	<select id="getDetail" parameterType="acorn.dto.ServiceDto" resultType="acorn.dto.ServiceDto">
+		SELECT *
+		FROM (SELECT ROWNUM rnum, title, content, TO_CHAR(regdate,'YYYY.MM.DD AM HH24:MI') regdate,type,state
+				FROM service 
+				WHERE mem_num=#{mem_num}
+				ORDER BY regdate asc)
+	    WHERE rnum=#{rnum}
+	</select>
+	<select id="getCount" resultType="int">
+		SELECT NVL(MAX(ROWNUM),0)
+		FROM qnalist
+	</select>
+	<insert id="insertQna" parameterType="acorn.dto.QnaListDto">
+		INSERT INTO qnalist(qna_listnum, qna_title, qna_pdnum, 
+				qna_writer, qna_content, qna_regdate) 
+		VALUES(qnalist_seq.NEXTVAL, #{qna_title}, #{qna_pdnum}, #{qna_writer}, #{qna_content} ,SYSDATE)
+	</insert>
 </mapper>

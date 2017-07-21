@@ -1,6 +1,5 @@
 package acorn.product.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,8 +7,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import acorn.mybatis.SqlMapConfig;
 import acorn.product.dto.ItemDto;
-
-
 
 public class ItemDao {
 	private static ItemDao dao;
@@ -48,4 +45,11 @@ public class ItemDao {
 		session.close();
 		return result;
 	}//insert()
+
+// item 상세보기
+	public ItemDto getDetail(int pno) {
+		SqlSession session=factory.openSession(true);
+		ItemDto item = session.selectOne("item.detail", pno);
+		return item;
+	}
 }

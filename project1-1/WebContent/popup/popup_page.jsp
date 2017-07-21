@@ -62,7 +62,7 @@ body{
 
 <script>
 function signUpBtn_click() {
-	opener.location.href='../member/agree_info.do'; 
+	opener.location.href='${pageContext.request.contextPath}/member/agree_info.do'; 
 	window.close();
 }
 function findBtn_click() {

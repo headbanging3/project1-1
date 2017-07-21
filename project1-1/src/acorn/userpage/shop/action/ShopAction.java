@@ -1,4 +1,4 @@
-package acorn.userpage.action;
+package acorn.userpage.shop.action;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class ShopAction extends Action{
 		
 		
 		// index 페이지를 출력할 뷰 페이지로 forward 이동
-		return new ActionForward("/userpage/shop.jsp");
+		return new ActionForward("/userpage/shop/shop.jsp");
 	}
 
 }

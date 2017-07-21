@@ -6,12 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title> 사용자 메인 </title>
-<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen"> 
-    <script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>
-    <script src="js/jquery.galleriffic.js" type="text/javascript"></script>
-    <script src="js/jquery.opacityrollover.js" type="text/javascript"></script>      
+<link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../css/grid.css" type="text/css" media="screen"> 
+    <script src="../js/jquery-1.6.2.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.galleriffic.js" type="text/javascript"></script>
+    <script src="../js/jquery.opacityrollover.js" type="text/javascript"></script>      
 </head>
 <body id="">
 	<!--==============================header=================================-->

@@ -15,7 +15,7 @@
 	int i;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<jsp:include page="inc/header.jsp"></jsp:include>        
+<jsp:include page="../inc/header.jsp"></jsp:include>        
 <style>
 img{
 	margin-left:30px
@@ -175,6 +175,6 @@ img{
             </div>	
         </div>
 	</section>
-	<jsp:include page="inc/footer.jsp"></jsp:include>
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
 </body>
 </html>
