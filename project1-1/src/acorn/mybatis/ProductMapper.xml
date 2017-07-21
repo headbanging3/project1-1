@@ -15,9 +15,12 @@
 	</select> -->
 
 	<select id="getList" resultType="acorn.product.dto.ItemDto">
-		SELECT pname,pno,comments,price,main_img,price,stock,regdate
-		FROM item
-		ORDER BY regdate DESC
+		SELECT *
+		FROM (SELECT result1.*,rownum
+   				FROM (SELECT pname,pno,comments,price,main_img,stock,regdate
+		            	FROM item
+		            	ORDER BY regdate DESC) result1
+		     )
 	</select>
 	<!-- <delete id="delete" parameterType="int">
 		DELETE FROM member WHERE num=#{num}

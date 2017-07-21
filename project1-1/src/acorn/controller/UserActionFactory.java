@@ -21,6 +21,7 @@ import acorn.product.action.ItemRegistFormAction;
 import acorn.service.action.QnaDetailAction;
 //github.com/headbanging3/project1-1.git
 import acorn.service.action.ServiceQnalistAction;
+import acorn.userpage.action.ShopAction;
 
 public class UserActionFactory {
 	private static UserActionFactory factory;
@@ -62,7 +63,10 @@ public class UserActionFactory {
 			action=new ItemRegistFormAction();
 		}else if(command.equals("/productManagement/regist_confirm")){
 			action=new ItemRegistAction();
-		}else if(command.equals("/home")) {
+		}else if(command.equals("/userpage/shop")) {
+			action = new ShopAction();
+		}
+		else if(command.equals("/home")) {
 			action = new HomeAction();
 		}else if(command.equals("/loginresult")){
 			action = new MemberSigninAction();
