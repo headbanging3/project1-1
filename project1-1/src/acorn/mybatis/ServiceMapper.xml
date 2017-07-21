@@ -13,4 +13,30 @@
 		FROM qnalist ORDER BY qna_listnum DESC
 	
 	</select>
+	
+	<insert id="insert" parameterType="acorn.dto.ServiceDto">
+		INSERT INTO service(mem_num,phone,email,title,content,regdate,type)
+		VALUES(#{mem_num},#{phone},#{email},#{title},#{content},SYSDATE,#{type})
+	</insert>
+	
+	<select id="getData" parameterType="string" resultType="acorn.dto.MemberDto">
+		SELECT mem_num,phone,email 
+		FROM member
+		WHERE id=#{id}
+	</select>
+	
+	<select id="getList" parameterType="int" resultType="acorn.dto.ServiceDto">
+		SELECT ROWNUM rnum, title, content, TO_CHAR(regdate,'YYYY.MM.DD AM HH24:MI') regdate,type,state
+		FROM service 
+		WHERE mem_num=#{mem_num}
+		ORDER BY regdate asc
+	</select>
+	<select id="getDetail" parameterType="acorn.dto.ServiceDto" resultType="acorn.dto.ServiceDto">
+		SELECT *
+		FROM (SELECT ROWNUM rnum, title, content, TO_CHAR(regdate,'YYYY.MM.DD AM HH24:MI') regdate,type,state
+				FROM service 
+				WHERE mem_num=#{mem_num}
+				ORDER BY regdate asc)
+	    WHERE rnum=#{rnum}
+	</select>
 </mapper>

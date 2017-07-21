@@ -8,6 +8,10 @@ import acorn.member.action.MemberIndexAction;
 import acorn.member.action.MemberOverlabAction;
 import acorn.member.action.MemberSignUpAction;
 import acorn.member.action.MemberSignUpFormAction;
+import acorn.service.action.ServiceDetailAction;
+import acorn.service.action.ServiceInsertAction;
+import acorn.service.action.ServiceInsertFormAction;
+import acorn.service.action.ServiceListAction;
 import acorn.service.action.ServiceQnalistAction;
 
 public class UserActionFactory {
@@ -42,9 +46,15 @@ public class UserActionFactory {
 			action=new MemberOverlabAction();
 		}else if(command.equals("/service/qnalist")){
 			action=new ServiceQnalistAction();
+		}else if(command.equals("/service/serviceinsertform")){
+			action=new ServiceInsertFormAction();
+		}else if(command.equals("/service/serviceinsert")){
+			action=new ServiceInsertAction();
+		}else if(command.equals("/service/servicelist")){
+			action=new ServiceListAction();
+		}else if(command.equals("/service/servicedetail")){
+			action=new ServiceDetailAction();
 		}
-		
-		
 		return action;
 	}
 }
