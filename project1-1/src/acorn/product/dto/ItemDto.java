@@ -1,4 +1,4 @@
-package acorn.dto;
+package acorn.product.dto;
 
 public class ItemDto {
 	private String pname;
@@ -7,6 +7,7 @@ public class ItemDto {
 	private String content;
 	private int price;
 	private int stock;
+	private String regdate;
 	private String main_Img;
 	private String sub_Img1;
 	private String sub_Img2;
@@ -92,6 +93,12 @@ public class ItemDto {
 	}
 	public void setSub_Img6(String sub_Img6) {
 		this.sub_Img6 = sub_Img6;
+	}
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
 
 	

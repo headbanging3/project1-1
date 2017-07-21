@@ -68,7 +68,7 @@
 				<div class="form-group">
 					<label for="email">이메일 : </label>
 					<input type="text" class="form-control" name="email" id="email" />
-				</div>
+				</div>sss
 				<div class="form-group">
 					<label for="addr">주소 : </label>
 					<input type="text" class="form-control" name="addr" id="addr" /><br />

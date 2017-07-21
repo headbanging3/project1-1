@@ -1,6 +1,8 @@
-<%@page import="acorn.dto.ItemDto"%>
+
+<%@page import="acorn.product.dao.ItemDao"%>
+<%@page import="acorn.product.dto.ItemDto"%>
 <%@page import="java.util.List"%>
-<%@page import="acorn.dao.ItemDao"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     

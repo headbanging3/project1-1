@@ -8,7 +8,11 @@ import acorn.member.action.MemberIndexAction;
 import acorn.member.action.MemberOverlabAction;
 import acorn.member.action.MemberSignUpAction;
 import acorn.member.action.MemberSignUpFormAction;
+import acorn.product.action.ItemListAction;
+import acorn.product.action.ItemRegistAction;
+import acorn.product.action.ItemRegistFormAction;
 import acorn.service.action.QnaDetailAction;
+//github.com/headbanging3/project1-1.git
 import acorn.service.action.ServiceQnalistAction;
 
 public class UserActionFactory {
@@ -45,10 +49,13 @@ public class UserActionFactory {
 			action=new ServiceQnalistAction();
 		}else if(command.equals("/service/qnadetail")){
 			action=new QnaDetailAction();
+		}else if(command.equals("/productManagement/product_list")){
+			action=new ItemListAction();
+		}else if(command.equals("/productManagement/regist_form")){
+			action=new ItemRegistFormAction();
+		}else if(command.equals("/productManagement/regist_confirm")){
+			action=new ItemRegistAction();
 		}
-		
-		
-		
 		return action;
 	}
 }
