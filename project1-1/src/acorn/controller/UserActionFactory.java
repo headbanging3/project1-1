@@ -2,6 +2,7 @@
 package acorn.controller;
 
 import acorn.action.HomeAction;
+import acorn.manager.action.ManagerServiceListAction;
 import acorn.manager.action.MlistAction;
 import acorn.manager.action.MupdateAction;
 import acorn.manager.action.MupdateFormAction;
@@ -117,6 +118,8 @@ public class UserActionFactory {
 			action=new ServiceListAction();
 		}else if(command.equals("/service/servicedetail")){
 			action=new ServiceDetailAction();
+		}else if(command.equals("/manager/servicelist")){
+			action=new ManagerServiceListAction();
 		}
 		return action;
 	}

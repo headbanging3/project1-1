@@ -72,7 +72,7 @@ String cPath=(String)request.getContextPath();
       </li>
       <li><a href="${pageContext.request.contextPath }/manager/mlist.do">회원목록보기</a></li>
       <li><a href="<%=cPath %>/productManagement/product_list.do">상품관리</a></li>
-      <li><a href="#">메뉴 3</a></li>
+      <li><a href="${pageContext.request.contextPath }/manager/servicelist.do">고객센터 관리</a></li>
       <li><a href="#">메뉴 4</a></li>
       <li><a href="#">메뉴 5</a></li>
       <li><a href="#">메뉴 6</a></li>
