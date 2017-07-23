@@ -6,44 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/bootstrap.min.css" />
+<link rel="stylesheet" href="sidebar.css" />
 <title>나의 문의 내역</title>
-<style>
-#content.global_content {width:1130px;padding:0 40px;}
-.global_content:after {content:'';display:block;clear:both;}
-.global_content .global_mypage_lnb {float:left;width:180px;padding:10px 0 60px;}
-.global_content .global_mypage_lnb .global_nav_tit {margin-bottom:11px;}
-.global_content .global_mypage_lnb .global_nav_tit h2 {font-size:18px;font-weight:normal;}
-.global_content .global_mypage_lnb .global_nav_tit span {display:inline-block;margin-right:16px;width:50px;height:22px;line-height:23px;text-align:center;vertical-align:2px;font-size:12px;font-weight:bold; color:#fff; background:#000; border-radius:2px; }
-
-.global_mypage_lnb ul:after {display:block; clear:both; content:"";}
-.global_mypage_lnb ul {padding:15px 0;border-top:1px solid #d9d9d9;}
-.global_mypage_lnb ul li {padding:5px 0;}
-.global_mypage_lnb ul li a {color:#fa5400;}
-.global_mypage_lnb ul li:last-child {margin-bottom:0;}
-.global_mypage_lnb ul li a {color:#111;}
-.global_mypage_lnb ul li a.active,
-.global_mypage_lnb ul li a.is_active {font-weight:bold;color:#fa5400;}
-
-.wrapper{position: absolute; top: 110px; left: 300px; width: 70%;}
-</style>
 </head>
 <body>
 <jsp:include page="../index_navbar.jsp"></jsp:include>
-
-<div id="content" class="global_content inquiry">
-	<div class="global_mypage_lnb">
-		<div class="global_nav_tit">
-			<h2><span> 일반회원</span><strong>${id }</strong>님</h2>
-		</div> 
-		<ul>
-			<li><a href="serviceinsertform.do">1:1 E-mail 문의</a></li>
-		</ul>
-		<ul>
-			<li><a href="${pageContext.request.contextPath}/member/info.do">회원정보관리</a></li>
-		</ul>
-	</div>
-</div>
-
+<jsp:include page="sidebar.jsp"></jsp:include>
 <div class="wrapper">
 	<div class="page-header">
 		<h1>마이페이지 <small>나의 문의 내역</small></h1>

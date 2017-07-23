@@ -7,6 +7,7 @@
 		</div> 
 		<ul>
 			<li><a href="serviceinsertform.do">1:1 E-mail 문의</a></li>
+			<li><a href="servicelist.do">나의 문의 내역</a></li>
 		</ul>
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/member/info.do">회원정보관리</a></li>
