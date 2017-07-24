@@ -50,4 +50,33 @@
 	<delete id="qnaDelete" parameterType="int">
 		DELETE FROM qnalist WHERE qna_listnum=#{listnum}
 	</delete>
+	<select id="productCount" resultType="int">
+		SELECT COUNT(*) FROM service 
+		WHERE type='상품' and state is null
+	</select>
+	<select id="userinfoCount" resultType="int">
+		SELECT COUNT(*) FROM service 
+		WHERE type='회원정보' and state is null
+	</select>
+	<select id="asCount" resultType="int">
+		SELECT COUNT(*) FROM service 
+		WHERE type='A/S' and state is null
+	</select>
+	<select id="serviceCount" resultType="int">
+		SELECT COUNT(*) FROM service 
+		WHERE type='서비스' and state is null
+	</select>
+	<select id="deliveryCount" resultType="int">
+		SELECT COUNT(*) FROM service 
+		WHERE type='배송' and state is null
+	</select>
+	<select id="orderCount" resultType="int">
+		SELECT COUNT(*) FROM service 
+		WHERE type='주문결제' and state is null
+	</select>
+	<select id="managerList" parameterType="string" resultType="acorn.dto.ServiceDto">
+		SELECT mem_num,phone,email,title,content,regdate,type,state
+		FROM service 
+		WHERE type=#{type} and state is null
+	</select>
 </mapper>

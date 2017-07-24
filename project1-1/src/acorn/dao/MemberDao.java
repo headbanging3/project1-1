@@ -364,7 +364,45 @@ public class MemberDao {
 
 	//////////////////////////////////////////////// 재두
 	//////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////////////
-
+	//ajax 건수클릭시 리스트 가져오기
+	public List<ServiceDto> ManagergetList(String type) {
+		SqlSession session=factory.openSession();
+		List<ServiceDto> list=session.selectList("service.managerList", type);
+		return list;
+	}
+	
+	//ajax 매니져의 서비스 메뉴별 대시보드
+	public int productCount(){
+		SqlSession session=factory.openSession();
+		int productcount=session.selectOne("service.productCount");
+		return productcount;
+	}
+	public int userinfoCount(){
+		SqlSession session=factory.openSession();
+		int productcount=session.selectOne("service.userinfoCount");
+		return productcount;
+	}
+	public int asCount(){
+		SqlSession session=factory.openSession();
+		int productcount=session.selectOne("service.asCount");
+		return productcount;
+	}
+	public int serviceCount(){
+		SqlSession session=factory.openSession();
+		int productcount=session.selectOne("service.serviceCount");
+		return productcount;
+	}
+	public int deliveryCount(){
+		SqlSession session=factory.openSession();
+		int productcount=session.selectOne("service.deliveryCount");
+		return productcount;
+	}
+	public int orderCount(){
+		SqlSession session=factory.openSession();
+		int productcount=session.selectOne("service.orderCount");
+		return productcount;
+	}
+		
 	//자세한 상담내역보기
 	public ServiceDto serDetail(ServiceDto dto){
 		SqlSession session=factory.openSession();

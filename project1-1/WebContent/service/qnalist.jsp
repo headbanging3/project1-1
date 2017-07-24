@@ -117,7 +117,7 @@
 <script>
 //팝업 띄우는 함수 
 function showPopup(){
-	window.open("${pageContext.request.contextPath}/signinform.do","팝업창","width=400,height=300,top=200,left=700");
+	window.open("${pageContext.request.contextPath}/popup/signinform.do","팝업창","width=400,height=300,top=200,left=700");
 }
 </script>
 </body>
