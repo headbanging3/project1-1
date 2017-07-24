@@ -6,12 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import acorn.controller.Action;
 import acorn.controller.ActionForward;
 
-public class MupdateFormAction extends Action{
+public class ManagerServiceListAction extends Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		return new ActionForward("/manager/updateform2.jsp");
+		return new ActionForward("/manager/servicelist.jsp");
 	}
 
 }

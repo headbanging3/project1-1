@@ -2,6 +2,7 @@
 package acorn.controller;
 
 import acorn.action.HomeAction;
+import acorn.manager.action.ManagerServiceListAction;
 import acorn.manager.action.MlistAction;
 import acorn.manager.action.MupdateAction;
 import acorn.manager.action.MupdateFormAction;
@@ -23,7 +24,10 @@ import acorn.member.action.MemberUpdateFormAction;
 import acorn.product.action.ItemListAction;
 import acorn.product.action.ItemRegistAction;
 import acorn.product.action.ItemRegistFormAction;
+import acorn.service.action.QnaDeleteAction;
 import acorn.service.action.QnaDetailAction;
+import acorn.service.action.QnaInsertAction;
+import acorn.service.action.QnaInsertformAction;
 import acorn.service.action.ServiceDetailAction;
 import acorn.service.action.ServiceInsertAction;
 import acorn.service.action.ServiceInsertFormAction;
@@ -76,8 +80,7 @@ public class UserActionFactory {
 			action = new ShopAction();
 		}else if(command.equals("/userpage/shop/detail")) {
 			action = new ShopDetailAction();
-		}
-		else if(command.equals("/home")) {
+		}else if(command.equals("/home")) {
 			action = new HomeAction();
 		}else if(command.equals("/popup/loginresult")){
 			action = new MemberSigninAction();
@@ -85,12 +88,14 @@ public class UserActionFactory {
 			action = new MemberSigninFormAction();
 		}else if(command.equals("/manager/mlist")) {
 			action = new MlistAction();
+		}else if(command.equals("/manager/updateform2")) {
+			action = new MupdateFormAction();
 		}else if(command.equals("/popup/logout")){
 			action = new MemberSignoutAction();
 		}else if(command.equals("/member/info")){
 			action = new MemberInfoAction();
-		}else if(command.equals("/manager/private/updateform2")) {
-			action = new MupdateFormAction();
+		}else if(command.equals("/manager/update")) {
+	action = new MupdateAction();
 		}else if(command.equals("/member/delete")){
 			action = new MemberDeleteAction();
 		}else if(command.equals("/member/updateform")){
@@ -99,6 +104,12 @@ public class UserActionFactory {
 			action = new MemberUpdateAction();
 		}else if(command.equals("/manager/private/update")) {
 			action = new MupdateAction();
+		}else if(command.equals("/service/qnainsert_form")){
+			action=new QnaInsertformAction();
+		}else if(command.equals("/service/qnainsert")){
+			action=new QnaInsertAction();
+		}else if(command.equals("/service/qnadelete")){
+			action=new QnaDeleteAction();
 		}else if(command.equals("/service/serviceinsertform")){
 			action=new ServiceInsertFormAction();
 		}else if(command.equals("/service/serviceinsert")){
@@ -107,6 +118,8 @@ public class UserActionFactory {
 			action=new ServiceListAction();
 		}else if(command.equals("/service/servicedetail")){
 			action=new ServiceDetailAction();
+		}else if(command.equals("/manager/servicelist")){
+			action=new ManagerServiceListAction();
 		}
 		return action;
 	}

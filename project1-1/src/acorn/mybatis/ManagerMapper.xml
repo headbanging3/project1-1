@@ -6,4 +6,7 @@
 		FROM member 
 		ORDER BY mem_num asc
 	</select>
+	<update id="update1" parameterType="acorn.dto.MemberDto">
+		UPDATE member SET name=#{name}, id=#{id}, pwd=#{pwd}, phone=#{phone}, email=#{email}, addr=#{addr} WHERE mem_num=#{mem_num}
+	</update>
 </mapper>

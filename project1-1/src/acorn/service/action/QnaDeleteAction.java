@@ -6,15 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import acorn.controller.Action;
 import acorn.controller.ActionForward;
 import acorn.dao.ServiceDao;
-import acorn.dto.QnaListDto;
 
-public class QnaDetailAction extends Action{
+public class QnaDeleteAction extends Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		int listnum=Integer.parseInt(request.getParameter("qna_listnum"));
-		QnaListDto dto=ServiceDao.getInstance().qnaDetail(listnum);
-		request.setAttribute("dto", dto);
+		int listnum=Integer.parseInt(request.getParameter("listnum"));
+		System.out.println(listnum);
+		ServiceDao.getInstance().qnaDelete(listnum);
 		
-		return new ActionForward("/service/qnadetail.jsp");
+		return new ActionForward("/service/qnalist.do",true);
 	}
 }

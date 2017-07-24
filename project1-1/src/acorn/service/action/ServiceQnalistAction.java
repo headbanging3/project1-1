@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import acorn.controller.Action;
 import acorn.controller.ActionForward;
-import acorn.dao.MemberDao;
+import acorn.dao.ServiceDao;
 import acorn.dto.QnaListDto;
 
 public class ServiceQnalistAction extends Action{
@@ -27,14 +27,13 @@ public class ServiceQnalistAction extends Action{
 			//페이지 번호를 설정한다.
 			pageNum=Integer.parseInt(strPageNum);
 		}
-		System.out.println(pageNum);
 		//보여줄 페이지 데이터의 시작 ResultSet row 번호
 		int startRowNum=1+(pageNum-1)*PAGE_ROW_COUNT;
 		//보여줄 페이지 데이터의 끝 ResultSet row 번호
 		int endRowNum=pageNum*PAGE_ROW_COUNT;
 		
 		//전체 row의 갯수를 DB에서 얻어온다.
-		int totalRow=MemberDao.getInstance().getCount();
+		int totalRow=ServiceDao.getInstance().getCount();
 		//전체 페이지의 갯수 구하기
 		int totalPageCount=
 				(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
@@ -53,7 +52,7 @@ public class ServiceQnalistAction extends Action{
 		dto.setEndRowNum(endRowNum);
 		
 		//1. MemberDao객체를 이용해서 글목록을 얻어온다.
-		List<QnaListDto> list=MemberDao.getInstance().getQnaList(dto);
+		List<QnaListDto> list=ServiceDao.getInstance().getQnaList(dto);
 		request.setAttribute("list", list);
 		
 		//현재 페이지 번호
