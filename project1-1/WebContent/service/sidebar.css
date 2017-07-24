@@ -13,5 +13,3 @@
 .global_mypage_lnb ul li a {color:#111;}
 .global_mypage_lnb ul li a.active,
 .global_mypage_lnb ul li a.is_active {font-weight:bold;color:#fa5400;}
-
-.wrapper{position: absolute; top: 110px; left: 300px; width: 70%;}

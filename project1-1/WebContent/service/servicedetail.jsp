@@ -11,21 +11,26 @@
 </head>
 <body>
 <jsp:include page="../index_navbar.jsp"></jsp:include>
-<jsp:include page="sidebar.jsp"></jsp:include>
-<div class="wrapper">
-	<div class="container">
-		<div class="page-header">
-		  <h1>나의 문의 내역 <small>${resultDto.type }</small></h1>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3">
+			<jsp:include page="sidebar.jsp"></jsp:include>
 		</div>
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<p>${resultDto.title }</p>
+		<div class="col-sm-9">
+			<div class="page-header">
+			  <h1>나의 문의 내역 <small>${resultDto.type }</small></h1>
 			</div>
-			<div class="panel-body">
-				<p>${resultDto.content }</p>
-			</div>
-			<div class="panel-footer">
-				<p>${resultDto.regdate }</p>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<p>${resultDto.title }</p>
+				</div>
+				<div class="panel-body">
+					<p>${resultDto.content }</p>
+				</div>
+				<div class="panel-footer">
+					<p>${resultDto.regdate }</p>
+				</div>
 			</div>
 		</div>
 	</div>
