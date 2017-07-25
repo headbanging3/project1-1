@@ -17,7 +17,7 @@
 <body>
 
 <script>
-	alert("<%=dto.getId() %> 회원님 정보를 수정했습니다.")
+	alert(" 회원 정보를 수정했습니다.")
 	location.href="info.jsp";
 </script>
 

@@ -28,7 +28,7 @@ public class MemberUpdateAction extends Action{
 		MemberDao.getInstance().update(dto);
 		request.setAttribute("msg", id+" 회원 정보를 수정했습니다.");
 		request.setAttribute("url", request.getContextPath());
-		return new ActionForward("/member/info.jsp");
+		return new ActionForward("/member/info.jsp",true);
 	}
 
 }
