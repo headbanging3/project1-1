@@ -122,7 +122,7 @@ footer {
 
 <div>
 	<div>
-	<h3 class="a">nike</h3>
+	<h3 class="a">Shoeoops</h3>
 	<a id="bg2" class="btn" href="userpage/index.jsp">구매하기</a>
 	<a id="bg" class="btn <%=manager %>" href="manager/" role="button">관리자페이지</a>
 	<img id="animal" src="resource/nike/애니멀.png" />

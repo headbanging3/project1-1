@@ -31,7 +31,7 @@
 	}
 	.form-inline{
 		margin-top:30px;
-	}
+	}	
 </style>
 </head>
 <body>
@@ -68,7 +68,7 @@
 				<div class="form-group">
 					<label for="email">이메일 : </label>
 					<input type="text" class="form-control" name="email" id="email" />
-				</div>sss
+				</div>
 				<div class="form-group">
 					<label for="addr">주소 : </label>
 					<input type="text" class="form-control" name="addr" id="addr" /><br />
