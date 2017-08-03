@@ -12,6 +12,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+	.nikerogo{
+		width:50px;
+	
+		display:inline-block;
+	}
+</style>
 <link rel="stylesheet" href="<%=cPath %>/resource/css/bootstrap.min.css?ver=1" />
 <link rel="stylesheet" href="<%=cPath %>/resource/css/custom.css" />
 </head>
@@ -22,18 +29,23 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
+        
       </button>
-      <a class="navbar-brand" href="<%=cPath %>/index.jsp">Brand</a>
+      
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
+    
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <li><a  href="<%=cPath %>/index.jsp"><img class="nikerogo" src="<%=cPath %>/resource/nike/나이키로고.png" /></a></li>
         <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
       	<%if(id != null) {%>
       	  <li><a href="<%=cPath %>/member/info.do"><%=id %> 님</a></li>
